@@ -55,7 +55,8 @@ class GameScene: SKScene {
                 }
                 if body.node!.name == "label" {
                     let nodelinho: SKLabelNode = body.node! as! SKLabelNode
-                    println(consultarDicionario(nodelinho.text))
+                    consultarDicionario(nodelinho.text)
+                    curString = ""
                 }
             }
             
@@ -66,8 +67,12 @@ class GameScene: SKScene {
         /* Called before each frame is rendered */
     }
     
-    func consultarDicionario(palavra: String) -> Bool{
-        return UIReferenceLibraryViewController.dictionaryHasDefinitionForTerm(palavra)
+    func consultarDicionario(palavra: String){
+        if UIReferenceLibraryViewController.dictionaryHasDefinitionForTerm(palavra) {
+            let ref = UIReferenceLibraryViewController(term: palavra)
+            let pop = UIPopoverController(contentViewController: ref)
+            pop.presentPopoverFromRect(CGRectMake(self.size.width/2, self.size.height - 150, 1, 1), inView: self.view!, permittedArrowDirections: UIPopoverArrowDirection.Down, animated: true)
+        }
     }
     
     func criaLetraTeste(l:String){

@@ -45,15 +45,6 @@ class GameViewController: UIViewController {
             skView.presentScene(scene)
         }
     }
-    
-    override func viewDidAppear(animated: Bool) {
-        self.navigationController?.navigationBarHidden = true
-        
-        let ref = UIReferenceLibraryViewController(term: "word")
-        self.navigationController?.pushViewController(ref, animated: true)
-        self.navigationController?.navigationBarHidden = false
-
-    }
 
     override func shouldAutorotate() -> Bool {
         return true
