@@ -15,6 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+//        let ref = UIReferenceLibraryViewController(term: "word")
+//        self.window?.rootViewController = ref;
         // Override point for customization after application launch.
         return true
     }

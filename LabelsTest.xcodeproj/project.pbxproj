@@ -15,6 +15,7 @@
 		D556F4D91B051C0300440249 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D556F4D81B051C0300440249 /* Images.xcassets */; };
 		D556F4DC1B051C0300440249 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D556F4DA1B051C0300440249 /* LaunchScreen.xib */; };
 		D556F4E81B051C0300440249 /* LabelsTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556F4E71B051C0300440249 /* LabelsTestTests.swift */; };
+		D5707D4D1B051ECF0007C567 /* LetraNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5707D4C1B051ECF0007C567 /* LetraNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		D556F4E11B051C0300440249 /* LabelsTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LabelsTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D556F4E61B051C0300440249 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D556F4E71B051C0300440249 /* LabelsTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsTestTests.swift; sourceTree = "<group>"; };
+		D5707D4C1B051ECF0007C567 /* LetraNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetraNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 		D556F4BF1B051C0300440249 = {
 			isa = PBXGroup;
 			children = (
+				D5707D4C1B051ECF0007C567 /* LetraNode.swift */,
 				D556F4CA1B051C0300440249 /* LabelsTest */,
 				D556F4E41B051C0300440249 /* LabelsTestTests */,
 				D556F4C91B051C0300440249 /* Products */,
@@ -219,6 +222,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5707D4D1B051ECF0007C567 /* LetraNode.swift in Sources */,
 				D556F4D21B051C0300440249 /* GameScene.swift in Sources */,
 				D556F4D41B051C0300440249 /* GameViewController.swift in Sources */,
 				D556F4CE1B051C0300440249 /* AppDelegate.swift in Sources */,
