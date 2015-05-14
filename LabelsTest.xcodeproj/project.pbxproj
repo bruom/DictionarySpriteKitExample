@@ -419,6 +419,7 @@
 				D556F4ED1B051C0300440249 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D556F4EE1B051C0300440249 /* Build configuration list for PBXNativeTarget "LabelsTestTests" */ = {
 			isa = XCConfigurationList;
@@ -427,6 +428,7 @@
 				D556F4F01B051C0300440249 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
