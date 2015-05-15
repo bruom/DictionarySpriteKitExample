@@ -11,7 +11,7 @@ import Foundation
 class Matriz<T> {
     let columns: Int
     let rows: Int
-    // #2
+
     var array: Array<T?>
     
     init(columns: Int, rows: Int) {

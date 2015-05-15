@@ -96,4 +96,14 @@ class Tabuleiro: SKNode {
         self.addChild(childNode)
     }
     
+    func updateLetraNode(x:Int, y:Int, letra:LetraNode) {
+        self.grid[x,y]!.content?.removeFromParent()
+        self.grid[x,y]?.content = letra
+        let childNode = letra
+        childNode.position = CGPointMake(self.coordForTile(x, y: y).0.x + tam/2, self.coordForTile(x, y: y).0.y + tam/2)
+        childNode.size = CGSizeMake(self.tam, self.tam)
+        self.addChild(childNode)
+    }
+
+    
 }

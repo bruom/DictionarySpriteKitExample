@@ -12,6 +12,7 @@ class GameScene: SKScene {
     
     var curString:String = ""
     var myLabel:SKLabelNode!
+    var reButton:SKSpriteNode!
     
     var scienceVector = ["A", "A", "A", "A", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     
@@ -31,6 +32,15 @@ class GameScene: SKScene {
         
         self.addChild(myLabel)
         
+        reButton = SKSpriteNode(imageNamed: "apple")
+        reButton.name = "refresh"
+        reButton.size = CGSizeMake(80, 80)
+        reButton.physicsBody = SKPhysicsBody(rectangleOfSize: reButton.size)
+        reButton.physicsBody?.dynamic = false
+        reButton.position = CGPointMake(50, 50)
+        
+        self.addChild(reButton)
+        
 //        for i in 1...10 {
 //            self.criaLetraTeste(randomLetra())
 //        }
@@ -38,12 +48,9 @@ class GameScene: SKScene {
         tabuleiro = Tabuleiro(x: 9, y: 10, tamanho: 80)
         tabuleiro.position = CGPointMake(20, self.size.height * 0.18)
         self.addChild(tabuleiro)
-        for i in 0...8 {
-            for j in 0...9 {
-                let letraAux = LetraNode(texture: SKTexture(imageNamed: "square"), letra: self.randomLetra())
-                tabuleiro.addLetraNode(i, y: j, letra: letraAux)
-            }
-        }
+        
+        self.encheLetras()
+        
         
         
         
@@ -90,6 +97,9 @@ class GameScene: SKScene {
                     consultarDicionario(nodelinho.text)
                     curString = ""
                 }
+                if body.node!.name == "refresh" {
+                    self.trocaLetras()
+                }
             }
             
         }
@@ -114,6 +124,24 @@ class GameScene: SKScene {
             let ref = UIReferenceLibraryViewController(term: palavra)
             let pop = UIPopoverController(contentViewController: ref)
             pop.presentPopoverFromRect(CGRectMake(self.size.width/2, self.size.height - 150, 1, 1), inView: self.view!, permittedArrowDirections: UIPopoverArrowDirection.Down, animated: true)
+        }
+    }
+    
+    func encheLetras() {
+        for i in 0...self.tabuleiro.grid.columns-1 {
+            for j in 0...self.tabuleiro.grid.rows-1 {
+                let letraAux = LetraNode(texture: SKTexture(imageNamed: "square"), letra: self.randomLetra())
+                tabuleiro.addLetraNode(i, y: j, letra: letraAux)
+            }
+        }
+    }
+    
+    func trocaLetras() {
+        for i in 0...self.tabuleiro.grid.columns-1 {
+            for j in 0...self.tabuleiro.grid.rows-1 {
+                let letraAux = LetraNode(texture: SKTexture(imageNamed: "square"), letra: self.randomLetra())
+                tabuleiro.updateLetraNode(i, y: j, letra: letraAux)
+            }
         }
     }
     
