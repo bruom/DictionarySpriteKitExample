@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		15593A691B065A1A00ACEA0D /* Tabuleiro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15593A681B065A1A00ACEA0D /* Tabuleiro.swift */; };
+		15593A6B1B065ACF00ACEA0D /* Matriz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15593A6A1B065ACF00ACEA0D /* Matriz.swift */; };
+		15593A6D1B065DC600ACEA0D /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15593A6C1B065DC600ACEA0D /* Tile.swift */; };
 		D556F4CE1B051C0300440249 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556F4CD1B051C0300440249 /* AppDelegate.swift */; };
 		D556F4D01B051C0300440249 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D556F4CF1B051C0300440249 /* GameScene.sks */; };
 		D556F4D21B051C0300440249 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556F4D11B051C0300440249 /* GameScene.swift */; };
@@ -31,6 +33,8 @@
 
 /* Begin PBXFileReference section */
 		15593A681B065A1A00ACEA0D /* Tabuleiro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tabuleiro.swift; sourceTree = "<group>"; };
+		15593A6A1B065ACF00ACEA0D /* Matriz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matriz.swift; sourceTree = "<group>"; };
+		15593A6C1B065DC600ACEA0D /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		D556F4C81B051C0300440249 /* LabelsTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LabelsTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D556F4CC1B051C0300440249 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D556F4CD1B051C0300440249 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +99,8 @@
 				D556F4DA1B051C0300440249 /* LaunchScreen.xib */,
 				D556F4CB1B051C0300440249 /* Supporting Files */,
 				15593A681B065A1A00ACEA0D /* Tabuleiro.swift */,
+				15593A6A1B065ACF00ACEA0D /* Matriz.swift */,
+				15593A6C1B065DC600ACEA0D /* Tile.swift */,
 			);
 			path = LabelsTest;
 			sourceTree = "<group>";
@@ -173,6 +179,7 @@
 				TargetAttributes = {
 					D556F4C71B051C0300440249 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = GT48V5L69E;
 					};
 					D556F4E01B051C0300440249 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -227,6 +234,8 @@
 			files = (
 				D5707D4D1B051ECF0007C567 /* LetraNode.swift in Sources */,
 				15593A691B065A1A00ACEA0D /* Tabuleiro.swift in Sources */,
+				15593A6B1B065ACF00ACEA0D /* Matriz.swift in Sources */,
+				15593A6D1B065DC600ACEA0D /* Tile.swift in Sources */,
 				D556F4D21B051C0300440249 /* GameScene.swift in Sources */,
 				D556F4D41B051C0300440249 /* GameViewController.swift in Sources */,
 				D556F4CE1B051C0300440249 /* AppDelegate.swift in Sources */,
@@ -358,6 +367,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = LabelsTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -368,6 +378,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = LabelsTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

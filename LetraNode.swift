@@ -19,8 +19,10 @@ class LetraNode: SKSpriteNode {
     
     init(texture:SKTexture, letra:String){
         super.init(texture: texture, color: UIColor.clearColor(), size: texture.size())
-        self.size = CGSizeMake(80, 80)
-        
+        //self.size = CGSizeMake(80, 80)
+        self.physicsBody = SKPhysicsBody(rectangleOfSize: self.size)
+        self.physicsBody?.dynamic = false
+        self.name = "letra"
         self.letra = letra
         self.label = SKLabelNode(fontNamed: "Helvetica")
         label.text = letra
