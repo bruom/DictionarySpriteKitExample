@@ -160,7 +160,7 @@ class GameScene: SKScene {
     }
     
     func randomLetra() -> String {
-        let ij:Float = Float(arc4random())%Float(scienceVector.count)
+        let ij = arc4random_uniform(UInt32(scienceVector.count-1))
         return scienceVector[Int(ij)]
     }
 }
