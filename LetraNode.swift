@@ -17,10 +17,10 @@ class LetraNode: SKSpriteNode {
         super.init(coder: aDecoder)
     }
     
-    init(texture:SKTexture, letra:String){
+    init(texture:SKTexture, letra:String, tam:CGFloat){
         super.init(texture: texture, color: UIColor.clearColor(), size: texture.size())
         //self.size = CGSizeMake(80, 80)
-        self.physicsBody = SKPhysicsBody(rectangleOfSize: self.size)
+        self.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(tam, tam))
         self.physicsBody?.dynamic = false
         self.name = "letra"
         self.letra = letra

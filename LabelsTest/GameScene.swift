@@ -8,13 +8,27 @@
 
 import SpriteKit
 
+extension Array {
+    func shuffled() -> [T] {
+        var list = self
+        for i in 0..<(list.count - 1) {
+            let j = Int(arc4random_uniform(UInt32(list.count - i))) + i
+            swap(&list[i], &list[j])
+        }
+        return list
+    }
+}
+
 class GameScene: SKScene {
     
     var curString:String = ""
     var myLabel:SKLabelNode!
     var reButton:SKSpriteNode!
+    var tam:CGFloat = CGFloat(80)
     
     var scienceVector = ["A", "A", "A", "A", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+    
+    var palavrasTeste = ["English", "Potato", "Pirate", "Lexicus", "Dog", "Car", "Cheese"]
     
     var tabuleiro:Tabuleiro!
     
@@ -45,12 +59,12 @@ class GameScene: SKScene {
 //            self.criaLetraTeste(randomLetra())
 //        }
         
-        tabuleiro = Tabuleiro(x: 9, y: 10, tamanho: 80)
+        tabuleiro = Tabuleiro(x: 8, y: 8, tamanho: tam)
         tabuleiro.position = CGPointMake(20, self.size.height * 0.18)
         self.addChild(tabuleiro)
         
-        self.encheLetras()
-        
+        //self.encheLetras()
+        self.encheLetras(seedar(0))
         
         
         
@@ -119,6 +133,10 @@ class GameScene: SKScene {
         /* Called before each frame is rendered */
     }
     
+    func validaPalavra(palavra: String) {
+        
+    }
+    
     func consultarDicionario(palavra: String){
         if UIReferenceLibraryViewController.dictionaryHasDefinitionForTerm(palavra) {
             let ref = UIReferenceLibraryViewController(term: palavra)
@@ -127,10 +145,55 @@ class GameScene: SKScene {
         }
     }
     
+    func seedar(num: Int) -> NSMutableArray{
+        
+        //define as palavras para seedar
+        var cont = num
+        var palavrasSeedadas:NSMutableArray = NSMutableArray()
+        var letrasSeedadas:NSMutableArray = NSMutableArray()
+        while cont >= 0 {
+            let rand = arc4random_uniform(UInt32(palavrasTeste.count-1))
+            if (!palavrasSeedadas.containsObject(palavrasTeste[Int(rand)])) {
+                palavrasSeedadas.addObject(palavrasTeste[Int(rand)])
+                cont--
+            }
+        }
+        
+        //garante que as letras apareçam na tela
+        for palavra in palavrasSeedadas {
+            let letras = Array(palavra as! String)
+            for letra in letras {
+                let letraStr = "\(letra)"
+                if !letrasSeedadas.containsObject(letraStr){
+                    letrasSeedadas.addObject(letraStr)
+                }
+            }
+        }
+        
+        return letrasSeedadas
+        
+    }
+    
+    func encheLetras(seed:NSMutableArray) {
+        var letrasFinal = Array<LetraNode>()
+        for i in 0...seed.count-1 {
+            let letraAux:LetraNode = LetraNode(texture: SKTexture(imageNamed: "square"), letra: seed.objectAtIndex(i) as! String, tam: self.tam)
+            letrasFinal.append(letraAux)
+        }
+        for i in seed.count...self.tabuleiro.grid.columns*self.tabuleiro.grid.rows-1 {
+            let letraAux = LetraNode(texture: SKTexture(imageNamed: "square"), letra: self.randomLetra(), tam: self.tam)
+            letrasFinal.append(letraAux)
+        }
+        letrasFinal = letrasFinal.shuffled()
+        for i in 0...self.tabuleiro.grid.columns*self.tabuleiro.grid.rows-1 {
+            tabuleiro.addLetraNode(i/self.tabuleiro.grid.columns, y: i%self.tabuleiro.grid.columns, letra: letrasFinal[i])
+        }
+    }
+    
     func encheLetras() {
         for i in 0...self.tabuleiro.grid.columns-1 {
             for j in 0...self.tabuleiro.grid.rows-1 {
-                let letraAux = LetraNode(texture: SKTexture(imageNamed: "square"), letra: self.randomLetra())
+                let letraAux = LetraNode(texture: SKTexture(imageNamed: "square"), letra: self.randomLetra(), tam: self.tam)
                 tabuleiro.addLetraNode(i, y: j, letra: letraAux)
             }
         }
@@ -139,14 +202,14 @@ class GameScene: SKScene {
     func trocaLetras() {
         for i in 0...self.tabuleiro.grid.columns-1 {
             for j in 0...self.tabuleiro.grid.rows-1 {
-                let letraAux = LetraNode(texture: SKTexture(imageNamed: "square"), letra: self.randomLetra())
+                let letraAux = LetraNode(texture: SKTexture(imageNamed: "square"), letra: self.randomLetra(), tam: self.tam)
                 tabuleiro.updateLetraNode(i, y: j, letra: letraAux)
             }
         }
     }
     
     func criaLetraTeste(l:String){
-        let letra = LetraNode(texture: SKTexture(imageNamed: "apple"), letra: l)
+        let letra = LetraNode(texture: SKTexture(imageNamed: "apple"), letra: l, tam: self.tam)
         letra.physicsBody = SKPhysicsBody(rectangleOfSize: letra.size)
         letra.physicsBody?.dynamic = false
         letra.name = "letra"
