@@ -10,6 +10,7 @@ import UIKit
 
 class PontuacaoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    var recebe : Int = 0
     var pontos = [0, 1, 2];
     var pontos2 = [100, 200, 1000]
     @IBOutlet weak var tv: UITableView!
@@ -17,6 +18,7 @@ class PontuacaoViewController: UIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
         tv.delegate = self;
         tv.dataSource = self;
+        pontos[0] = recebe;
         
         var nib : UINib = UINib(nibName: "PontuacaoTableViewCell", bundle: nil);
         tv.registerNib(nib, forCellReuseIdentifier: "PontCell");

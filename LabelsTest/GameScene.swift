@@ -20,11 +20,15 @@ extension Array {
 }
 
 class GameScene: SKScene {
-    
+    var lastUpdate : NSTimeInterval = 0;
     var curString:String = ""
     var myLabel:SKLabelNode!
     var reButton:SKSpriteNode!
     var tam:CGFloat = CGFloat(80)
+    
+    var timeLabel : SKLabelNode!;
+    var timeLeft = 60.00
+
     
     var scienceVector = ["A", "A", "A", "A", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     
@@ -66,6 +70,8 @@ class GameScene: SKScene {
         //self.encheLetras()
         self.encheLetras(seedar(2))
         
+        timeLabel = SKLabelNode(fontNamed: "Comic Sans")//AYY
+        timeLabel.position = CGPointMake(self.frame.size.width * 0.1, self.frame.size.height * 0.9);
         
         
     }
@@ -128,10 +134,6 @@ class GameScene: SKScene {
                 //tile.content?.alpha = 1.0
             }
         }
-    }
-   
-    override func update(currentTime: CFTimeInterval) {
-        /* Called before each frame is rendered */
     }
     
     func validaPalavra(palavra: String) {
@@ -245,5 +247,16 @@ class GameScene: SKScene {
     func randomLetra() -> String {
         let ij = arc4random_uniform(UInt32(scienceVector.count-1))
         return scienceVector[Int(ij)]
+    }
+    
+    
+    override func update(currentTime: CFTimeInterval) {
+        if((currentTime - lastUpdate) > 0.5){
+            if(timeLeft > 0){
+                timeLeft -= 0.5;
+                timeLabel.text = "\(Int(timeLeft))";
+            }
+        }
+        /* Called before each frame is rendered */
     }
 }
