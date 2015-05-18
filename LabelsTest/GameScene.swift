@@ -208,7 +208,7 @@ class GameScene: SKScene {
         }
         letrasFinal = letrasFinal.shuffled()
         for i in 0...self.tabuleiro.grid.columns*self.tabuleiro.grid.rows-1 {
-            tabuleiro.addLetraNode(i/self.tabuleiro.grid.columns, y: i%self.tabuleiro.grid.columns, letra: letrasFinal[i])
+            tabuleiro.addLetraNode(i/self.tabuleiro.grid.rows, y: i%self.tabuleiro.grid.rows, letra: letrasFinal[i])
         }
     }
     

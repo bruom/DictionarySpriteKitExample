@@ -18,6 +18,8 @@ class Scramble:SKScene {
     var timeLabel : SKLabelNode!;
     var timeLeft = 60.00
     
+    var target:String!
+    
     
     var scienceVector = ["A", "A", "A", "A", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     
@@ -44,11 +46,11 @@ class Scramble:SKScene {
         
         self.addChild(prompt)
         
-        tabuleiro = Tabuleiro(x: 9, y: 2, tamanho: tam)
-        tabuleiro.position = CGPointMake(self.size.width/2 - tabuleiro.frame.size.width/2, self.size.height * 0.18)
+        tabuleiro = Tabuleiro(x: 5, y: 2, tamanho: tam)
+        tabuleiro.position = CGPointMake(self.size.width/2 - tam*5/2, self.size.height * 0.18)
         self.addChild(tabuleiro)
         
-        self.encheLetras(seedar(0))
+        self.encheLetras(seedar())
         
         timeLabel = SKLabelNode(fontNamed: "Comic Sans")//AYY
         timeLabel.position = CGPointMake(self.frame.size.width * 0.1, self.frame.size.height * 0.9);
@@ -69,7 +71,7 @@ class Scramble:SKScene {
                         tabuleiro.tileForCoord(locationGrid.x, y: locationGrid.y)!.content?.alpha = 0.5
                         let nodinho = tilezinha.content
                         let letrinha:String = nodinho!.letra
-                        println(letrinha)
+                        self.validaLetra(letrinha)
                         self.curString = "\(curString)\(letrinha)"
                         self.myLabel.text = curString
                         self.myLabel.physicsBody = SKPhysicsBody(rectangleOfSize: myLabel.frame.size)
@@ -100,36 +102,36 @@ class Scramble:SKScene {
     }
     
     func validaPalavra(palavra: String) {
-        for resposta in palavrasTeste {
-            if resposta == palavra {
-                self.popScore("+8001!")
-            }
+        if palavra == target {
+            self.popScore("+8001!")
         }
     }
     
-    func seedar(num: Int) -> NSMutableArray{
-        
-        //define as palavras para seedar
-        var cont = num
-        var palavrasSeedadas:NSMutableArray = NSMutableArray()
-        var letrasSeedadas:NSMutableArray = NSMutableArray()
-        while cont >= 0 {
-            let rand = arc4random_uniform(UInt32(palavrasTeste.count-1))
-            if (!palavrasSeedadas.containsObject(palavrasTeste[Int(rand)])) {
-                palavrasSeedadas.addObject(palavrasTeste[Int(rand)])
-                self.prompt.text = palavrasTeste[Int(rand)]
-                
-                cont--
-            }
+    func validaLetra(letra: String) {
+        let auxPalavra = "\(curString)\(letra)"
+        if target == auxPalavra {
+            popScore("ACERTOU!")
+        }
+        if !target.hasPrefix(auxPalavra){
+            popScore("ERROU!")
         }
         
+    }
+    
+    func seedar() -> NSMutableArray{
+        
+        //define as palavras para seedar
+        var letrasSeedadas:NSMutableArray = NSMutableArray()
+        let rand = arc4random_uniform(UInt32(palavrasTeste.count-1))
+        target = palavrasTeste[Int(rand)]
+        self.prompt.text = palavrasTeste[Int(rand)]
+        
+        
         //garante que as letras apareçam na tela
-        for palavra in palavrasSeedadas {
-            let letras = Array(palavra as! String)
-            for letra in letras {
-                let letraStr = "\(letra)"
-                letrasSeedadas.addObject(letraStr)
-            }
+        let letras = Array(target)
+        for letra in letras {
+            let letraStr = "\(letra)"
+            letrasSeedadas.addObject(letraStr)
         }
         
         return letrasSeedadas
@@ -162,7 +164,7 @@ class Scramble:SKScene {
         }
         letrasFinal = letrasFinal.shuffled()
         for i in 0...self.tabuleiro.grid.columns*self.tabuleiro.grid.rows-1 {
-            tabuleiro.addLetraNode(i/self.tabuleiro.grid.columns, y: i%self.tabuleiro.grid.columns, letra: letrasFinal[i])
+            tabuleiro.addLetraNode(i/self.tabuleiro.grid.rows, y: i%self.tabuleiro.grid.rows, letra: letrasFinal[i])
         }
     }
     
