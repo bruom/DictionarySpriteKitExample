@@ -26,17 +26,40 @@ extension SKNode {
 }
 
 class GameViewController: UIViewController {
+    
+    var gameType:Int = 0 //0 Grid, 1 Scramble
+    var skView:SKView!
+    
+    lazy var scene:SKScene = {
+        if self.gameType == 0{
+            let aux:GameScene = GameScene()
+            aux.vc = self
+            return aux
+        }
+        else {
+            let aux:Scramble = Scramble()
+            return aux
+        }
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let scene:Scramble = Scramble()
-        let skView = self.view as! SKView
+        skView = SKView()
+        skView.frame.size = self.view.frame.size
+        self.view.addSubview(skView)
+        
+        self.view.backgroundColor = UIColor.whiteColor()
+        
+        
+//        let scene:Scramble = Scramble()
+        
         skView.ignoresSiblingOrder = true
         scene.scaleMode = .AspectFill
         skView.presentScene(scene)
 
 //        if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
+//            scene.vc = self
 //            // Configure the view.
 //            let skView = self.view as! SKView
 //            skView.showsFPS = false
@@ -75,11 +98,11 @@ class GameViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let sk = self.view as! SKView
-        sk.presentScene(nil);
+        skView.presentScene(nil);
         var pontuacao = segue.destinationViewController as! PontuacaoViewController;
         pontuacao.recebe = sender as! Int;
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
+    
 }

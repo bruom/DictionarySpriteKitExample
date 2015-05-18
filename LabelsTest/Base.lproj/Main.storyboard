@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="12U-3O-shH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="12U-3O-shH">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <scenes>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="LabelsTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="gameView" id="BV1-FR-VrT" customClass="GameViewController" customModule="LabelsTest" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="maK-i9-Uhn"/>
                         <viewControllerLayoutGuide type="bottom" id="khH-OB-KpY"/>
@@ -78,10 +78,10 @@
             </objects>
             <point key="canvasLocation" x="882" y="1145"/>
         </scene>
-        <!--View Controller-->
+        <!--Main View-->
         <scene sceneID="fZ1-1X-Pvb">
             <objects>
-                <viewController id="12U-3O-shH" sceneMemberID="viewController">
+                <viewController id="12U-3O-shH" customClass="MainView" customModule="LabelsTest" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mBq-C4-7ZA"/>
                         <viewControllerLayoutGuide type="bottom" id="eJd-uU-f4g"/>
@@ -92,11 +92,11 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hVZ-xa-MW8">
                                 <rect key="frame" x="262" y="213" width="77" height="30"/>
-                                <state key="normal" title="Comecar">
+                                <state key="normal" title="Grid Legal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="BV1-FR-VrT" kind="show" id="KZR-Uz-hhD"/>
+                                    <action selector="go:" destination="12U-3O-shH" eventType="touchUpInside" id="g8A-7b-8hg"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HZF-F8-NY8">
@@ -106,6 +106,15 @@
                                 </state>
                                 <connections>
                                     <segue destination="UKH-JF-PM0" kind="show" id="C3X-8B-V7S"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="leJ-A7-gYA">
+                                <rect key="frame" x="267" y="273" width="66" height="30"/>
+                                <state key="normal" title="Scramble">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="go:" destination="12U-3O-shH" eventType="touchUpInside" id="xbe-hv-caA"/>
                                 </connections>
                             </button>
                         </subviews>
