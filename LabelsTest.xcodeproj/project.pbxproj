@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		151922411B0A6424000AEC28 /* Scramble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151922401B0A6424000AEC28 /* Scramble.swift */; };
 		15593A691B065A1A00ACEA0D /* Tabuleiro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15593A681B065A1A00ACEA0D /* Tabuleiro.swift */; };
 		15593A6B1B065ACF00ACEA0D /* Matriz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15593A6A1B065ACF00ACEA0D /* Matriz.swift */; };
 		15593A6D1B065DC600ACEA0D /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15593A6C1B065DC600ACEA0D /* Tile.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		151922401B0A6424000AEC28 /* Scramble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scramble.swift; sourceTree = "<group>"; };
 		15593A681B065A1A00ACEA0D /* Tabuleiro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tabuleiro.swift; sourceTree = "<group>"; };
 		15593A6A1B065ACF00ACEA0D /* Matriz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matriz.swift; sourceTree = "<group>"; };
 		15593A6C1B065DC600ACEA0D /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				4E27814D1B0688DF00A278FB /* PontuacaoTableViewCell.swift */,
 				4E27814E1B0688DF00A278FB /* PontuacaoTableViewCell.xib */,
 				4E27814F1B0688DF00A278FB /* fotoPadrao.png */,
+				151922401B0A6424000AEC28 /* Scramble.swift */,
 			);
 			path = LabelsTest;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				15593A691B065A1A00ACEA0D /* Tabuleiro.swift in Sources */,
 				15593A6B1B065ACF00ACEA0D /* Matriz.swift in Sources */,
 				15593A6D1B065DC600ACEA0D /* Tile.swift in Sources */,
+				151922411B0A6424000AEC28 /* Scramble.swift in Sources */,
 				4E2781501B0688DF00A278FB /* Pontuacao.swift in Sources */,
 				4E2781521B0688DF00A278FB /* PontuacaoTableViewCell.swift in Sources */,
 				D556F4D21B051C0300440249 /* GameScene.swift in Sources */,
