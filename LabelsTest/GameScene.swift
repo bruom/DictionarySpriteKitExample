@@ -108,7 +108,8 @@ class GameScene: SKScene {
                 }
                 if body.node!.name == "label" {
                     let nodelinho: SKLabelNode = body.node! as! SKLabelNode
-                    consultarDicionario(nodelinho.text)
+                    //consultarDicionario(nodelinho.text)
+                    validaPalavra(nodelinho.text)
                     curString = ""
                 }
                 if body.node!.name == "refresh" {
@@ -134,7 +135,11 @@ class GameScene: SKScene {
     }
     
     func validaPalavra(palavra: String) {
-        
+        for resposta in palavrasTeste {
+            if resposta == palavra {
+                self.popScore("+8001!")
+            }
+        }
     }
     
     func consultarDicionario(palavra: String){
@@ -173,6 +178,20 @@ class GameScene: SKScene {
         
         return letrasSeedadas
         
+    }
+    
+    func popScore(score:String){
+        let scoreLabel = SKLabelNode(fontNamed: "Helvetica")
+        scoreLabel.text = score
+        scoreLabel.position = CGPointMake(self.size.width/2, self.size.height*0.2)
+        scoreLabel.fontColor = UIColor.redColor()
+        let fadeAction = SKAction.fadeOutWithDuration(1.5)
+        let moveAction = SKAction.moveToY(self.size.height*0.8, duration: 1.5)
+        self.addChild(scoreLabel)
+        scoreLabel.runAction(moveAction)
+        scoreLabel.runAction(fadeAction, completion: { () -> Void in
+            scoreLabel.removeFromParent()
+        })
     }
     
     func encheLetras(seed:NSMutableArray) {
