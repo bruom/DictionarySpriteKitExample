@@ -69,23 +69,23 @@ class GameScene: SKScene {
                     //let letrinha:String = nodinho.letra
                     
                     //buscando a letra pela posição do toque na grid, e nao no bodyAtPoint
-                    let tilezinha = self.tabuleiro.tileForCoord(locationGrid.x, y: locationGrid.y)
-                    let nodinho = tilezinha.content
-                    let letrinha:String = nodinho!.letra
-                    
-                    println(letrinha)
-                    self.curString = "\(curString)\(letrinha)"
-                    self.myLabel.text = curString
-                    self.myLabel.physicsBody = SKPhysicsBody(rectangleOfSize: myLabel.frame.size)
-                    myLabel.physicsBody?.dynamic = false
-                    
+                    if let tilezinha = self.tabuleiro.tileForCoord(locationGrid.x, y: locationGrid.y){
+                        tabuleiro.tileForCoord(locationGrid.x, y: locationGrid.y)!.content?.alpha = 0.5
+                        let nodinho = tilezinha.content
+                        let letrinha:String = nodinho!.letra
+                        println(letrinha)
+                        self.curString = "\(curString)\(letrinha)"
+                        self.myLabel.text = curString
+                        self.myLabel.physicsBody = SKPhysicsBody(rectangleOfSize: myLabel.frame.size)
+                        myLabel.physicsBody?.dynamic = false
+                    }
                     
                     //trata as letras vizinhas à selecionada
 //                    let marker = SKSpriteNode(imageNamed: "Spaceship")
 //                    marker.size = CGSizeMake(10, 10)
 //                    marker.position = locationGrid
 //                    tabuleiro.addChild(marker)
-                    tabuleiro.tileForCoord(locationGrid.x, y: locationGrid.y).content?.alpha = 0.5
+                    
                     /*for letra in self.tabuleiro.getNeighbors(tabuleiro.tileForCoord(locationGrid.x, y: locationGrid.y)) {
                         //letra.alpha = 0.5
                     }*/
@@ -110,7 +110,7 @@ class GameScene: SKScene {
             let location = touch.locationInNode(self)
             let locationGrid = touch.locationInNode(self.tabuleiro)
             if let tile = tabuleiro.tileForCoord(locationGrid.x, y: locationGrid.y) {
-                tile.content?.alpha = 1.0
+                //tile.content?.alpha = 1.0
             }
         }
     }

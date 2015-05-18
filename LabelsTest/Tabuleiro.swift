@@ -50,11 +50,11 @@ class Tabuleiro: SKNode {
         return self.grid[x,y]!
     }
     
-    func tileForCoord(x:CGFloat, y:CGFloat) -> Tile! {
+    func tileForCoord(x:CGFloat, y:CGFloat) -> Tile? {
         var xPos = Int(x/tam)
         var yPos = Int(y/tam)
         println("\(xPos) \(yPos)")
-        if xPos < 0 || yPos < 0 {
+        if xPos < 0 || yPos < 0  || xPos >= grid.columns || yPos >= grid.rows {
             return nil
         }
         return self.grid[xPos,yPos]!
