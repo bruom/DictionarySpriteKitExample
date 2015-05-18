@@ -20,6 +20,8 @@ extension Array {
 }
 
 class GameScene: SKScene {
+    var vc : GameViewController?
+    
     var lastUpdate : NSTimeInterval = 0;
     var curString:String = ""
     var myLabel:SKLabelNode!
@@ -27,7 +29,10 @@ class GameScene: SKScene {
     var tam:CGFloat = CGFloat(80)
     
     var timeLabel : SKLabelNode!;
-    var timeLeft = 60.00
+    var timeLeft = 10.00
+    var totalScore : SKLabelNode!;
+    var score = 0;
+
 
     
     var scienceVector = ["A", "A", "A", "A", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
@@ -64,7 +69,7 @@ class GameScene: SKScene {
 //        }
         
         tabuleiro = Tabuleiro(x: 8, y: 8, tamanho: tam)
-        tabuleiro.position = CGPointMake(20, self.size.height * 0.18)
+        tabuleiro.position = CGPointMake(self.size.width/2 - tam * 8 / 2, self.size.height * 0.18)
         self.addChild(tabuleiro)
         
         //self.encheLetras()
@@ -72,7 +77,12 @@ class GameScene: SKScene {
         
         timeLabel = SKLabelNode(fontNamed: "Comic Sans")//AYY
         timeLabel.position = CGPointMake(self.frame.size.width * 0.1, self.frame.size.height * 0.9);
+        self.addChild(timeLabel);
         
+        totalScore = SKLabelNode(fontNamed: "Comic Sans")//AYY
+        totalScore.position = CGPointMake(self.frame.size.width * 0.9, self.frame.size.height * 0.9);
+        totalScore.text = "0";
+        self.addChild(totalScore);
         
     }
     
@@ -137,9 +147,12 @@ class GameScene: SKScene {
     }
     
     func validaPalavra(palavra: String) {
+        println(count(palavra));
         for resposta in palavrasTeste {
             if resposta == palavra {
-                self.popScore("+8001!")
+                score += Int(timeLeft)*10 * count(palavra);
+                totalScore.text = "\(score)";
+                self.popScore("\(Int(timeLeft)*10 * count(palavra))")
             }
         }
     }
@@ -249,14 +262,25 @@ class GameScene: SKScene {
         return scienceVector[Int(ij)]
     }
     
+   
+    func gameOver(){
+        self.vc?.performSegueWithIdentifier("gameOver", sender: score)
+        
+        //self.inval
+    }
     
     override func update(currentTime: CFTimeInterval) {
         if((currentTime - lastUpdate) > 0.5){
             if(timeLeft > 0){
+                lastUpdate = currentTime;
                 timeLeft -= 0.5;
                 timeLabel.text = "\(Int(timeLeft))";
+            } else {
+                self.gameOver();
             }
         }
         /* Called before each frame is rendered */
     }
+    
+    
 }

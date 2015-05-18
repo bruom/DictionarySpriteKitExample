@@ -64,7 +64,7 @@ class GameViewController: UIViewController {
             return Int(UIInterfaceOrientationMask.All.rawValue)
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
@@ -72,5 +72,14 @@ class GameViewController: UIViewController {
 
     override func prefersStatusBarHidden() -> Bool {
         return true
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let sk = self.view as! SKView
+        sk.presentScene(nil);
+        var pontuacao = segue.destinationViewController as! PontuacaoViewController;
+        pontuacao.recebe = sender as! Int;
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
     }
 }

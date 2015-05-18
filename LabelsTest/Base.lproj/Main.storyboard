@@ -18,6 +18,9 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="fax-p2-tQI"/>
+                    <connections>
+                        <segue destination="UKH-JF-PM0" kind="show" identifier="gameOver" id="R85-KO-bYs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
@@ -114,4 +117,7 @@
             <point key="canvasLocation" x="205" y="744"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="R85-KO-bYs"/>
+    </inferredMetricsTieBreakers>
 </document>
