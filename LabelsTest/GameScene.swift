@@ -64,7 +64,7 @@ class GameScene: SKScene {
         self.addChild(tabuleiro)
         
         //self.encheLetras()
-        self.encheLetras(seedar(0))
+        self.encheLetras(seedar(2))
         
         
         
@@ -155,6 +155,7 @@ class GameScene: SKScene {
             let rand = arc4random_uniform(UInt32(palavrasTeste.count-1))
             if (!palavrasSeedadas.containsObject(palavrasTeste[Int(rand)])) {
                 palavrasSeedadas.addObject(palavrasTeste[Int(rand)])
+                println(palavrasTeste[Int(rand)])
                 cont--
             }
         }

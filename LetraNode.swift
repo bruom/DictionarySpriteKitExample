@@ -33,11 +33,11 @@ class LetraNode: SKSpriteNode {
         self.addChild(label)
         
         //Remover depois:
-        self.createTimer();
-        labelREMOVER = SKLabelNode(fontNamed: "Comic Sans")//AYY
-        labelREMOVER.position = CGPointMake(10, 10)
-        labelREMOVER.text = "lol"
-        self.addChild(labelREMOVER);
+//        self.createTimer();
+//        labelREMOVER = SKLabelNode(fontNamed: "Comic Sans")//AYY
+//        labelREMOVER.position = CGPointMake(10, 10)
+//        labelREMOVER.text = "lol"
+//        self.addChild(labelREMOVER);
     }
     
     func createTimer(){
