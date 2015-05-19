@@ -16,12 +16,15 @@ class Tile:NSObject {
     
     var content:LetraNode?
     
+    var isActive:Bool!
+    
     init(xC:CGFloat, yC:CGFloat, xPos:Int, yPos:Int) {
         super.init()
         xCoord = xC
         yCoord = yC
         x = xPos
         y = yPos
+        isActive = true
     }
     
 }

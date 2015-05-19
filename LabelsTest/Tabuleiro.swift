@@ -88,6 +88,37 @@ class Tabuleiro: SKNode {
         return nodes
     }
     
+    func getOrthoNeighbors(tile:Tile) -> Array<LetraNode> {
+        var nodes = Array<LetraNode>()
+        var x = tile.x
+        var y = tile.y
+        return getOrthoNeighbors(x, y: y)
+    }
+    
+    func getOrthoNeighbors(x:Int, y:Int) -> Array<LetraNode> {
+        var nodes = Array<LetraNode>()
+        
+        for i in -1...1 {   //percorre as tiles ao redor
+            if i != 0 {   //exceto a própria tile
+                if let tile = tileForPos(x + i, y: y){ //se houver tal tile, isto é, não for borda
+                    if let letra:LetraNode = tile.content { //se a tile tiver uma letra nela
+                        nodes.append(letra)
+                    }
+                }
+            }
+        }
+        for i in -1...1 {   //percorre as tiles ao redor
+            if i != 0 {   //exceto a própria tile
+                if let tile = tileForPos(x, y: y+i){ //se houver tal tile, isto é, não for borda
+                    if let letra:LetraNode = tile.content { //se a tile tiver uma letra nela
+                        nodes.append(letra)
+                    }
+                }
+            }
+        }
+        return nodes
+    }
+    
     func addLetraNode(x:Int, y:Int, letra:LetraNode) {
         self.grid[x,y]?.content = letra
         let childNode = letra

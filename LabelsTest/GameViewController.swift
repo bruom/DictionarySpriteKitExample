@@ -32,7 +32,7 @@ class GameViewController: UIViewController {
     
     lazy var scene:SKScene = {
         if self.gameType == 0{
-            let aux:GameScene = GameScene()
+            let aux:Bookworm = Bookworm()
             aux.vc = self
             return aux
         }

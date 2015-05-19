@@ -48,45 +48,7 @@ class GameScene: SKScene {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
-        self.size = view.frame.size
-        myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.name = "label"
-        myLabel.physicsBody = SKPhysicsBody(rectangleOfSize: myLabel.frame.size)
-        myLabel.physicsBody?.dynamic = false
-        myLabel.text = curString
-        myLabel.fontSize = 65;
-        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:100);
-        
-        self.addChild(myLabel)
-        
-        reButton = SKSpriteNode(imageNamed: "apple")
-        reButton.name = "refresh"
-        reButton.size = CGSizeMake(80, 80)
-        reButton.physicsBody = SKPhysicsBody(rectangleOfSize: reButton.size)
-        reButton.physicsBody?.dynamic = false
-        reButton.position = CGPointMake(50, 50)
-        
-        self.addChild(reButton)
-        
-//        for i in 1...10 {
-//            self.criaLetraTeste(randomLetra())
-//        }
-        
-        tabuleiro = Tabuleiro(x: 8, y: 8, tamanho: tam)
-        tabuleiro.position = CGPointMake(self.size.width/2 - tam * 8 / 2, self.size.height * 0.18)
-        self.addChild(tabuleiro)
-        
-        //self.encheLetras()
-        self.encheLetras(seedar(2))
-        
-        timeLabel = SKLabelNode(fontNamed: "Comic Sans")//AYY
-        timeLabel.position = CGPointMake(self.frame.size.width * 0.1, self.frame.size.height * 0.9);
-        self.addChild(timeLabel);
-        
-        totalScore = SKLabelNode(fontNamed: "Comic Sans")//AYY
-        totalScore.position = CGPointMake(self.frame.size.width * 0.9, self.frame.size.height * 0.9);
-        totalScore.text = "0";
-        self.addChild(totalScore);
+        self.setupScene()
         
     }
     
@@ -138,6 +100,48 @@ class GameScene: SKScene {
             }
             
         }
+    }
+    
+    func setupScene(){
+        self.size = view!.frame.size
+        myLabel = SKLabelNode(fontNamed:"Chalkduster")
+        myLabel.name = "label"
+        myLabel.physicsBody = SKPhysicsBody(rectangleOfSize: myLabel.frame.size)
+        myLabel.physicsBody?.dynamic = false
+        myLabel.text = curString
+        myLabel.fontSize = 65;
+        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:100);
+        
+        self.addChild(myLabel)
+        
+        reButton = SKSpriteNode(imageNamed: "apple")
+        reButton.name = "refresh"
+        reButton.size = CGSizeMake(80, 80)
+        reButton.physicsBody = SKPhysicsBody(rectangleOfSize: reButton.size)
+        reButton.physicsBody?.dynamic = false
+        reButton.position = CGPointMake(50, 50)
+        
+        self.addChild(reButton)
+        
+        //        for i in 1...10 {
+        //            self.criaLetraTeste(randomLetra())
+        //        }
+        
+        tabuleiro = Tabuleiro(x: 8, y: 8, tamanho: tam)
+        tabuleiro.position = CGPointMake(self.size.width/2 - tam * 8 / 2, self.size.height * 0.18)
+        self.addChild(tabuleiro)
+        
+        //self.encheLetras()
+        self.encheLetras(seedar(2))
+        
+        timeLabel = SKLabelNode(fontNamed: "Comic Sans")//AYY
+        timeLabel.position = CGPointMake(self.frame.size.width * 0.1, self.frame.size.height * 0.9);
+        self.addChild(timeLabel);
+        
+        totalScore = SKLabelNode(fontNamed: "Comic Sans")//AYY
+        totalScore.position = CGPointMake(self.frame.size.width * 0.9, self.frame.size.height * 0.9);
+        totalScore.text = "0";
+        self.addChild(totalScore);
     }
     
     func mudarParaBookworm(seed:NSMutableArray){
