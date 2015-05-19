@@ -27,6 +27,8 @@ class GameScene: SKScene {
     var myLabel:SKLabelNode!
     var reButton:SKSpriteNode!
     var tam:CGFloat = CGFloat(80) //Tamanho dos quadrados
+    var cols:Int = 8
+    var rows:Int = 8
     
     //Para uso do timer
     var timeLabel : SKLabelNode!;
@@ -127,8 +129,8 @@ class GameScene: SKScene {
         //            self.criaLetraTeste(randomLetra())
         //        }
         
-        tabuleiro = Tabuleiro(x: 8, y: 8, tamanho: tam)
-        tabuleiro.position = CGPointMake(self.size.width/2 - tam * 8 / 2, self.size.height * 0.18)
+        tabuleiro = Tabuleiro(x: cols, y: rows, tamanho: tam)
+        tabuleiro.position = CGPointMake(self.size.width/2 - tam * CGFloat(cols) / 2, self.size.height * 0.18)
         self.addChild(tabuleiro)
         
         //self.encheLetras()

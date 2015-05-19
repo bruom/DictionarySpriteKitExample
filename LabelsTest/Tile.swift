@@ -14,6 +14,9 @@ class Tile:NSObject {
     var x:Int!
     var y:Int!
     
+    //preview de letra, serve para planejar a posicao das letras sem ter que criar nodes
+    var letraPrev:String!
+    
     var content:LetraNode?
     
     var isActive:Bool!
@@ -25,6 +28,7 @@ class Tile:NSObject {
         x = xPos
         y = yPos
         isActive = true
+        letraPrev = ""
     }
     
 }
