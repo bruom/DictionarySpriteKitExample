@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		151922411B0A6424000AEC28 /* Scramble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151922401B0A6424000AEC28 /* Scramble.swift */; };
 		151922431B0A7870000AEC28 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151922421B0A7870000AEC28 /* MainView.swift */; };
+		151922871B0BA261000AEC28 /* BookWorm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151922861B0BA261000AEC28 /* BookWorm.swift */; };
 		15593A691B065A1A00ACEA0D /* Tabuleiro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15593A681B065A1A00ACEA0D /* Tabuleiro.swift */; };
 		15593A6B1B065ACF00ACEA0D /* Matriz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15593A6A1B065ACF00ACEA0D /* Matriz.swift */; };
 		15593A6D1B065DC600ACEA0D /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15593A6C1B065DC600ACEA0D /* Tile.swift */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		151922401B0A6424000AEC28 /* Scramble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scramble.swift; sourceTree = "<group>"; };
 		151922421B0A7870000AEC28 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		151922861B0BA261000AEC28 /* BookWorm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookWorm.swift; sourceTree = "<group>"; };
 		15593A681B065A1A00ACEA0D /* Tabuleiro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tabuleiro.swift; sourceTree = "<group>"; };
 		15593A6A1B065ACF00ACEA0D /* Matriz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matriz.swift; sourceTree = "<group>"; };
 		15593A6C1B065DC600ACEA0D /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 		D556F4CA1B051C0300440249 /* LabelsTest */ = {
 			isa = PBXGroup;
 			children = (
+				151922861B0BA261000AEC28 /* BookWorm.swift */,
 				D556F4CD1B051C0300440249 /* AppDelegate.swift */,
 				D556F4CF1B051C0300440249 /* GameScene.sks */,
 				D556F4D11B051C0300440249 /* GameScene.swift */,
@@ -265,6 +268,7 @@
 				4E2781521B0688DF00A278FB /* PontuacaoTableViewCell.swift in Sources */,
 				D556F4D21B051C0300440249 /* GameScene.swift in Sources */,
 				D556F4D41B051C0300440249 /* GameViewController.swift in Sources */,
+				151922871B0BA261000AEC28 /* BookWorm.swift in Sources */,
 				D556F4CE1B051C0300440249 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -103,7 +103,7 @@ class Scramble:SKScene {
     
     func validaPalavra(palavra: String) {
         if palavra == target {
-            self.popScore("+8001!")
+            self.popScore("👍+8001!")
         }
     }
     
