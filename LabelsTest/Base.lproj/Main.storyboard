@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="12U-3O-shH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dba-gc-OV4">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <scenes>
         <!--Game View Controller-->
@@ -78,6 +78,58 @@
             </objects>
             <point key="canvasLocation" x="882" y="1145"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="O9I-gG-2xI">
+            <objects>
+                <viewController id="dba-gc-OV4" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="D25-dV-EGM"/>
+                        <viewControllerLayoutGuide type="bottom" id="BWM-Qu-Ja2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1gf-lj-64V">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2K4-Ml-jVQ">
+                                <rect key="frame" x="277" y="200" width="39" height="30"/>
+                                <state key="normal" title="Jogar">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="12U-3O-shH" kind="show" id="5OI-rx-aWT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MiK-B8-V9b">
+                                <rect key="frame" x="263" y="352" width="74" height="30"/>
+                                <state key="normal" title="Pontuação">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="UKH-JF-PM0" kind="show" id="fsf-W6-TMS"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View Bonita" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y7C-i1-khE">
+                                <rect key="frame" x="255" y="163" width="91" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="y7C-i1-khE" firstAttribute="top" secondItem="D25-dV-EGM" secondAttribute="bottom" constant="143" id="4r4-L2-2hj"/>
+                            <constraint firstAttribute="centerX" secondItem="MiK-B8-V9b" secondAttribute="centerX" id="Aq4-g2-v0q"/>
+                            <constraint firstAttribute="centerX" secondItem="2K4-Ml-jVQ" secondAttribute="centerX" id="IlC-8C-UaS"/>
+                            <constraint firstAttribute="centerX" secondItem="y7C-i1-khE" secondAttribute="centerX" id="Td7-47-muv"/>
+                            <constraint firstItem="2K4-Ml-jVQ" firstAttribute="top" secondItem="y7C-i1-khE" secondAttribute="bottom" constant="16" id="WYr-3L-F0X"/>
+                            <constraint firstItem="MiK-B8-V9b" firstAttribute="top" secondItem="2K4-Ml-jVQ" secondAttribute="bottom" constant="122" id="qhz-Jb-rLg"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jg8-Fs-93y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-553" y="783"/>
+        </scene>
         <!--Main View-->
         <scene sceneID="fZ1-1X-Pvb">
             <objects>
@@ -90,7 +142,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hVZ-xa-MW8">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hVZ-xa-MW8">
                                 <rect key="frame" x="262" y="213" width="77" height="30"/>
                                 <state key="normal" title="Grid Legal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -99,16 +151,7 @@
                                     <action selector="go:" destination="12U-3O-shH" eventType="touchUpInside" id="g8A-7b-8hg"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HZF-F8-NY8">
-                                <rect key="frame" x="258" y="335" width="85" height="30"/>
-                                <state key="normal" title="Pontuaçao">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="UKH-JF-PM0" kind="show" id="C3X-8B-V7S"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="leJ-A7-gYA">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="leJ-A7-gYA">
                                 <rect key="frame" x="267" y="273" width="66" height="30"/>
                                 <state key="normal" title="Scramble">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -119,14 +162,20 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hVZ-xa-MW8" firstAttribute="top" secondItem="mBq-C4-7ZA" secondAttribute="bottom" constant="193" id="1fT-Rt-xEh"/>
+                            <constraint firstAttribute="centerX" secondItem="hVZ-xa-MW8" secondAttribute="centerX" id="M85-aO-dkz"/>
+                            <constraint firstAttribute="centerX" secondItem="leJ-A7-gYA" secondAttribute="centerX" id="PO6-G9-TN3"/>
+                            <constraint firstItem="leJ-A7-gYA" firstAttribute="top" secondItem="hVZ-xa-MW8" secondAttribute="bottom" constant="30" id="mmS-WR-bmv"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5OU-6t-eJC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="205" y="744"/>
+            <point key="canvasLocation" x="221" y="747"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="R85-KO-bYs"/>
+        <segue reference="fsf-W6-TMS"/>
     </inferredMetricsTieBreakers>
 </document>
