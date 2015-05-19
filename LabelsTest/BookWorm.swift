@@ -135,14 +135,61 @@ class Bookworm:GameScene {
         
         if startTile.letraPrev == "" {
             for letra in letras {
-                self.colocaLetra(letra as! String, neighbors: self.tabuleiro.getOrthoNeighborTiles(startTile))
+                self.colocaLetra(letra as! String, neighbors: NSMutableArray(array: self.tabuleiro.getOrthoNeighborTiles(startTile)))
             }
         }
         
         
     }
     
+//    func colocaPalavra(palavra:String){
+//        let letras = Array(palavra)
+//        
+//        //posicao da primeira letra da palavra
+//        let rC = arc4random_uniform(UInt32(self.tabuleiro.grid.columns-1))
+//        let rR = arc4random_uniform(UInt32(self.tabuleiro.grid.rows-1))
+//        
+//        let startTile = self.tabuleiro.tileForPos(Int(rC) , y: Int(rR))!
+//        
+//        if startTile.letraPrev == "" {
+//            for letra in letras {
+//                let continua = self.colocaLetra(letra as! String, neighbors: NSMutableArray(array: self.tabuleiro.getOrthoNeighborTiles(startTile)))
+//                if(!continua){
+//                    
+//                }
+//            }
+//        } else {
+//            colocaPalavra(palavra);
+//        }
+//        
+//        
+//    }
+    
+    func colocaX(palavra: NSArray, letra: Int, neighbors:NSMutableArray) -> Bool {
+        
+        if(letra >= palavra.count){
+            return true;//Se toda a palavra foi inserida com sucesso, acaba o backtracking
+        }
+        
+        for n in neighbors {//Percorrendo as tiles vizinhas
+            let tile = n as! Tile;
+            if(tile.letraPrev == ""){ //Verifica se está ocupada
+                tile.letraPrev = palavra.objectAtIndex(letra) as! String;//Seta a tile como ocupada
+                if(colocaX(palavra, letra: letra + 1, neighbors: NSMutableArray(array: self.tabuleiro.getOrthoNeighbors(tile)))){//Continua a recursão
+                    return true;//Se toda ele conseguiu inserir o resto das palavras, retorna true;
+                } else {
+                    tile.letraPrev = "";//Se deu ruim, desocupa o tile.
+                }
+            }//if
+        }//for
+        
+        return false;
+        
+
+    }
+    
     func colocaLetra(letra:String, neighbors:NSMutableArray) -> Bool{
+        //randomizar neighbors
         let tile = neighbors.firstObject as! Tile
         if neighbors.count == 0 {
             return false
