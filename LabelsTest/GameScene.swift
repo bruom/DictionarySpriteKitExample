@@ -22,15 +22,19 @@ extension Array {
 class GameScene: SKScene {
     var vc : GameViewController?
     
-    var lastUpdate : NSTimeInterval = 0;
-    var curString:String = ""
+    //Para uso do timer
+    var curString:String = "" //Palavra sendo formada
     var myLabel:SKLabelNode!
     var reButton:SKSpriteNode!
-    var tam:CGFloat = CGFloat(80)
+    var tam:CGFloat = CGFloat(80) //Tamanho dos quadrados
     
+    //Para uso do timer
     var timeLabel : SKLabelNode!;
-    var timeLeft = 10.00
+    var timeLeft = 10.00//Tempo inicial
     var totalScore : SKLabelNode!;
+    var lastUpdate : NSTimeInterval = 0;
+    
+    //Pontuação do jogador
     var score = 0;
 
 
@@ -136,6 +140,13 @@ class GameScene: SKScene {
         }
     }
     
+    func mudarParaBookworm(seed:NSMutableArray){
+        //Verificar inicio de nova palavra pela letra maiuscula.(?)
+        //Carai backtracking
+        
+        
+    }
+    
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         for touch in (touches as! Set<UITouch>) {
             let location = touch.locationInNode(self)
@@ -165,6 +176,8 @@ class GameScene: SKScene {
         }
     }
     
+    //Pega a determinada quantidade de palavras do vetor de palavras
+    //e inicia o processo de insersão delas no tabuleiro.
     func seedar(num: Int) -> NSMutableArray{
         
         //define as palavras para seedar
@@ -195,6 +208,7 @@ class GameScene: SKScene {
         
     }
     
+    //Animação da subida da pontuação quando acerta algo
     func popScore(score:String){
         let scoreLabel = SKLabelNode(fontNamed: "Helvetica")
         scoreLabel.text = score
@@ -211,20 +225,26 @@ class GameScene: SKScene {
     
     func encheLetras(seed:NSMutableArray) {
         var letrasFinal = Array<LetraNode>()
+        //Coloca as letras das palavras seedadas em letrasFinal
         for i in 0...seed.count-1 {
             let letraAux:LetraNode = LetraNode(texture: SKTexture(imageNamed: "square"), letra: seed.objectAtIndex(i) as! String, tam: self.tam)
             letrasFinal.append(letraAux)
         }
+        
+        //Completa o vetor letrasFinal pra se adequar ao tamanho do tabuleiro
         for i in seed.count...self.tabuleiro.grid.columns*self.tabuleiro.grid.rows-1 {
             let letraAux = LetraNode(texture: SKTexture(imageNamed: "square"), letra: self.randomLetra(), tam: self.tam)
             letrasFinal.append(letraAux)
         }
+        
+        //Embaralha as letras do letrasfinal e coloca elas no tabuleiro.
         letrasFinal = letrasFinal.shuffled()
         for i in 0...self.tabuleiro.grid.columns*self.tabuleiro.grid.rows-1 {
             tabuleiro.addLetraNode(i/self.tabuleiro.grid.rows, y: i%self.tabuleiro.grid.rows, letra: letrasFinal[i])
         }
     }
     
+    //Enche tabuleiro com letras aleatórias
     func encheLetras() {
         for i in 0...self.tabuleiro.grid.columns-1 {
             for j in 0...self.tabuleiro.grid.rows-1 {
@@ -234,6 +254,7 @@ class GameScene: SKScene {
         }
     }
     
+    //"Refaz" o tabuleiro com novas letras aleatórias
     func trocaLetras() {
         for i in 0...self.tabuleiro.grid.columns-1 {
             for j in 0...self.tabuleiro.grid.rows-1 {
@@ -257,12 +278,13 @@ class GameScene: SKScene {
         println(l)
     }
     
+    //Pega uma letra aleatoriamente do vetor
     func randomLetra() -> String {
         let ij = arc4random_uniform(UInt32(scienceVector.count-1))
         return scienceVector[Int(ij)]
     }
     
-   
+    //Força a troca de view
     func gameOver(){
         self.vc?.performSegueWithIdentifier("gameOver", sender: score)
         
@@ -270,6 +292,8 @@ class GameScene: SKScene {
     }
     
     override func update(currentTime: CFTimeInterval) {
+        
+        //Controle do timer
         if((currentTime - lastUpdate) > 0.5){
             if(timeLeft > 0){
                 lastUpdate = currentTime;
@@ -279,7 +303,7 @@ class GameScene: SKScene {
                 self.gameOver();
             }
         }
-        /* Called before each frame is rendered */
+        
     }
     
     
