@@ -18,7 +18,7 @@ class Bookworm:GameScene {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
-        self.setupScene()
+        self.setupScene(9)
         
         letrasSelecionadas = NSMutableArray()
     }
@@ -69,7 +69,7 @@ class Bookworm:GameScene {
     
     override func validaPalavra(palavra: String) {
         for resposta in palavrasTeste {
-            if resposta == palavra {
+            if resposta.uppercaseString == palavra {
                 score += Int(timeLeft)*10 * count(palavra);
                 totalScore.text = "\(score)";
                 self.popScore("\(Int(timeLeft)*10 * count(palavra))")
@@ -104,7 +104,7 @@ class Bookworm:GameScene {
         var cont = num
         var palavrasSeedadas:NSMutableArray = NSMutableArray()
         while cont >= 0 {
-            let rand = arc4random_uniform(UInt32(palavrasTeste.count-1))
+            let rand = arc4random_uniform(UInt32(palavrasTeste.count))
             if (!palavrasSeedadas.containsObject(palavrasTeste[Int(rand)])) {
                 palavrasSeedadas.addObject(palavrasTeste[Int(rand)])
                 println(palavrasTeste[Int(rand)])
@@ -119,38 +119,48 @@ class Bookworm:GameScene {
     override func encheLetras(seed:NSMutableArray) {
         //tenta inserir cada palavra
         //var matriz = Matriz<String>(columns: cols, rows: rows)
-        for palavra in seed {
-            self.colocaPalavra(palavra as! String)
-            break;
+//        for palavra in seed {
+//            self.colocaPalavra(palavra as! String)
+//            break;
+//        }
+        self.colocaPalavra(seed)
+        for i in 0...self.tabuleiro.grid.columns-1 {
+            for j in 0...self.tabuleiro.grid.rows-1 {
+                if (tabuleiro.tileForPos(i, y: j)?.letraPrev == ""){
+                    
+                let letraAux = LetraNode(texture: SKTexture(imageNamed: "square"), letra: self.randomLetra(), tam: self.tam)
+                tabuleiro.addLetraNode(i, y: j, letra: letraAux)
+                    
+                }
+            }
         }
     }
     
-    func colocaPalavra(palavra:String){
-        let letras = Array(palavra)
-        
-        //posicao da primeira letra da palavra
-        let rC = arc4random_uniform(UInt32(self.tabuleiro.grid.columns-1))
-        let rR = arc4random_uniform(UInt32(self.tabuleiro.grid.rows-1))
-        
-        let startTile = self.tabuleiro.tileForPos(Int(rC) , y: Int(rR))!
-        
-//        if startTile.letraPrev == "" {
-//            for letra in letras {
-//                self.colocaLetra(letra as! String, neighbors: NSMutableArray(array: self.tabuleiro.getOrthoNeighborTiles(startTile)))
-//            }
-//        }
-        
-//        if startTile.letraPrev == "" {
-//            for letra in letras {
-//                self.colocaX(NSArray(array: Array(arrayLiteral: palavra)), letra: 0, neighbors: NSMutableArray(array: self.tabuleiro.getOrthoNeighborTiles(startTile)));
-//            }
-//        }
-        if startTile.letraPrev == "" {
-//            for letra in letras {
-                self.colocaX(palavra, letra: 0, neighbors: NSMutableArray(array: self.tabuleiro.getOrthoNeighborTiles(startTile)));
-//            }
+    func colocaPalavra(palavras:NSMutableArray){
+        for indicePalavra in 0...palavras.count-1{
+            var flagPalavra = false
+            var tries = 80
+            //posicao da primeira letra da palavra
+            do{
+                
+                let rC = arc4random_uniform(UInt32(self.tabuleiro.grid.columns-1))
+                let rR = arc4random_uniform(UInt32(self.tabuleiro.grid.rows-1))
+                
+                let startTile = self.tabuleiro.tileForPos(Int(rC) , y: Int(rR))!
+                
+                if startTile.letraPrev == "" {
+                    flagPalavra =  self.colocaX(palavras.objectAtIndex(indicePalavra) as! String, letra: 0, neighbors: self.tabuleiro.getOrthoNeighborTiles(startTile))
+            
+                }
+                
+                if tries < 1 {
+                    //volta
+                    abort()
+                }
+                tries--
+            }while(!flagPalavra)
         }
-
+        
         
     }
     
@@ -177,31 +187,35 @@ class Bookworm:GameScene {
 //        
 //    }
     
-    func colocaX(palavra: String, letra: Int, neighbors:NSMutableArray) -> Bool {
+    func colocaX(palavra: String, letra: Int, neighbors:Array<Tile>) -> Bool {
         var palavraArr = Array(palavra);
         
         if(letra >= palavraArr.count){
             return true;//Se toda a palavra foi inserida com sucesso, acaba o backtracking
         }
         println(neighbors.count);
-        for n in neighbors {//Percorrendo as tiles vizinhas
-            let tile = n as! Tile;
+        var shufNeighbors = neighbors.shuffled()
+        for n in shufNeighbors {//Percorrendo as tiles vizinhas
+            
+            let tile = n;
             println(tile.x);
             println(tile.y);
             if(tile.letraPrev == ""){ //Verifica se está ocupada
                 tile.letraPrev = String(palavraArr[letra])// as! String;//Seta a tile como ocupada
-                if(colocaX(palavra, letra: letra + 1, neighbors: NSMutableArray(array: self.tabuleiro.getOrthoNeighbors(tile)))){//Continua a recursão
-                    let letraAux = LetraNode(texture: SKTexture(imageNamed: "square"), letra: String(palavraArr[letra]), tam: self.tam)
+                if(colocaX(palavra, letra: letra + 1, neighbors: self.tabuleiro.getOrthoNeighborTiles(tile))){//Continua a recursão
+                    let letraAux = LetraNode(texture: SKTexture(imageNamed: "square"), letra: String(palavraArr[letra]).uppercaseString, tam: self.tam)
                     self.tabuleiro.addLetraNode(tile.x, y: tile.y, letra: letraAux)
                     println(palavraArr[letra]);
                     return true;//Se toda ele conseguiu inserir o resto das palavras, retorna true;
                 } else {
                     tile.letraPrev = "";//Se deu ruim, desocupa o tile.
+                    
                 }
+                return false
             }//if
         }//for
         
-        return false;
+        return false
         
 
     }

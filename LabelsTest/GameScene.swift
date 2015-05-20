@@ -43,14 +43,14 @@ class GameScene: SKScene {
     
     var scienceVector = ["A", "A", "A", "A", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     
-    var palavrasTeste = ["English", "Potato", "Pirate", "Lexicus", "Dog", "Car", "Cheese"]
+    var palavrasTeste = ["English", "Potato", "Pirate", "Lexicus", "Dog", "Car", "Cheese", "Rubens", "Word", "Ayylmao"]
     
     var tabuleiro:Tabuleiro!
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
-        self.setupScene()
+        self.setupScene(2)//Parametro de quantas palavras serão seedadas.
         
     }
     
@@ -104,7 +104,7 @@ class GameScene: SKScene {
         }
     }
     
-    func setupScene(){
+    func setupScene(num:Int){
         self.size = view!.frame.size
         myLabel = SKLabelNode(fontNamed:"Chalkduster")
         myLabel.name = "label"
@@ -134,7 +134,7 @@ class GameScene: SKScene {
         self.addChild(tabuleiro)
         
         //self.encheLetras()
-        self.encheLetras(seedar(2))
+        self.encheLetras(seedar(num))
         
         timeLabel = SKLabelNode(fontNamed: "Comic Sans")//AYY
         timeLabel.position = CGPointMake(self.frame.size.width * 0.1, self.frame.size.height * 0.9);
@@ -190,10 +190,12 @@ class GameScene: SKScene {
         var cont = num
         var palavrasSeedadas:NSMutableArray = NSMutableArray()
         var letrasSeedadas:NSMutableArray = NSMutableArray()
+        var arrPalavras = NSMutableArray(array: palavrasTeste)
         while cont >= 0 {
             let rand = arc4random_uniform(UInt32(palavrasTeste.count-1))
-            if (!palavrasSeedadas.containsObject(palavrasTeste[Int(rand)])) {
-                palavrasSeedadas.addObject(palavrasTeste[Int(rand)])
+            if (!palavrasSeedadas.containsObject(arrPalavras.objectAtIndex(Int(rand)))) {
+                palavrasSeedadas.addObject(arrPalavras.objectAtIndex(Int(rand)))
+                arrPalavras.removeObjectAtIndex(Int(rand))
                 println(palavrasTeste[Int(rand)])
                 cont--
             }
