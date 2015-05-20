@@ -13,14 +13,16 @@ class Bookworm:GameScene {
     //array que guarda as tiles das letras selecionadas no momento
     var letrasSelecionadas:NSMutableArray!
     
-    
+    var letrasVizinhas:NSMutableArray!
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
         self.setupScene(9)
         
+        letrasVizinhas = NSMutableArray()
         letrasSelecionadas = NSMutableArray()
+        
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -37,26 +39,25 @@ class Bookworm:GameScene {
                     
                     //buscando a letra pela posição do toque na grid, e nao no bodyAtPoint
                     if let tilezinha = self.tabuleiro.tileForCoord(locationGrid.x, y: locationGrid.y){
-                        if tilezinha.isActive == true {
-                            //tabuleiro.tileForCoord(locationGrid.x, y: locationGrid.y)!.content?.alpha = 0.5
-                            tilezinha.content?.alpha = 0.5
-                            tilezinha.isActive = false
-                            let nodinho = tilezinha.content
-                            letrasSelecionadas.addObject(tilezinha)
-                            let letrinha:String = nodinho!.letra
-                            println(letrinha)
-                            self.curString = "\(curString)\(letrinha)"
-                            self.myLabel.text = curString
-                            self.validaPalavra(myLabel.text)
-                            self.myLabel.physicsBody = SKPhysicsBody(rectangleOfSize: myLabel.frame.size)
-                            myLabel.physicsBody?.dynamic = false
+                        if tilezinha.isActive == true{
                             
-                            for letra in self.tabuleiro.getOrthoNeighbors(tabuleiro.tileForCoord(locationGrid.x, y: locationGrid.y)!) {
-                                //letra.alpha = 0.5
+                            if self.curString == ""{
+                                //tabuleiro.tileForCoord(locationGrid.x, y: locationGrid.y)!.content?.alpha = 0.5
+                                self.eventoToque(tilezinha, locationGrid: locationGrid)
+                            }
+                            else {
+                                if letrasVizinhas.containsObject(tilezinha){
+                                    self.eventoToque(tilezinha, locationGrid: locationGrid)
+                                }
+                                else{
+                                    self.apagar()
+                                    self.eventoToque(tilezinha, locationGrid: locationGrid)
+                                }
                             }
                         }
                     }
                     
+
                     
                 }
                 
@@ -79,6 +80,29 @@ class Bookworm:GameScene {
                 }
                 letrasSelecionadas = NSMutableArray()
             }
+        }
+    }
+    
+    func eventoToque(tile:Tile, locationGrid:CGPoint){
+        tile.content?.alpha = 0.5
+        tile.isActive = false
+        let node = tile.content
+        letrasSelecionadas.addObject(tile)
+        let letrinha:String = node!.letra
+        println(letrinha)
+        self.curString = "\(curString)\(letrinha)"
+        self.myLabel.text = curString
+        self.validaPalavra(myLabel.text)
+        self.myLabel.physicsBody = SKPhysicsBody(rectangleOfSize: myLabel.frame.size)
+        myLabel.physicsBody?.dynamic = false
+        
+        for letra in self.tabuleiro.getOrthoNeighbors(tabuleiro.tileForCoord(locationGrid.x, y: locationGrid.y)!) {
+            //letra.alpha = 0.5
+        }
+        
+        letrasVizinhas = NSMutableArray()
+        for tileVizinha in self.tabuleiro.getOrthoNeighborTiles(tabuleiro.tileForCoord(locationGrid.x, y: locationGrid.y)!) {
+            letrasVizinhas.addObject(tileVizinha)
         }
     }
     
@@ -254,3 +278,6 @@ class Bookworm:GameScene {
 
     
 }
+
+
+
