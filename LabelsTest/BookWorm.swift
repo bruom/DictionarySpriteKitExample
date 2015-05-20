@@ -179,7 +179,8 @@ class Bookworm:GameScene {
                 
                 if tries < 1 {
                     //volta
-                    abort()
+                    //abort()
+                    return
                 }
                 tries--
             }while(!flagPalavra)
