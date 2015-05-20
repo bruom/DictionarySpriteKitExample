@@ -121,6 +121,7 @@ class Bookworm:GameScene {
         //var matriz = Matriz<String>(columns: cols, rows: rows)
         for palavra in seed {
             self.colocaPalavra(palavra as! String)
+            break;
         }
     }
     
@@ -133,12 +134,23 @@ class Bookworm:GameScene {
         
         let startTile = self.tabuleiro.tileForPos(Int(rC) , y: Int(rR))!
         
-        if startTile.letraPrev == "" {
-            for letra in letras {
-                self.colocaLetra(letra as! String, neighbors: NSMutableArray(array: self.tabuleiro.getOrthoNeighborTiles(startTile)))
-            }
-        }
+//        if startTile.letraPrev == "" {
+//            for letra in letras {
+//                self.colocaLetra(letra as! String, neighbors: NSMutableArray(array: self.tabuleiro.getOrthoNeighborTiles(startTile)))
+//            }
+//        }
         
+//        if startTile.letraPrev == "" {
+//            for letra in letras {
+//                self.colocaX(NSArray(array: Array(arrayLiteral: palavra)), letra: 0, neighbors: NSMutableArray(array: self.tabuleiro.getOrthoNeighborTiles(startTile)));
+//            }
+//        }
+        if startTile.letraPrev == "" {
+//            for letra in letras {
+                self.colocaX(palavra, letra: 0, neighbors: NSMutableArray(array: self.tabuleiro.getOrthoNeighborTiles(startTile)));
+//            }
+        }
+
         
     }
     
@@ -165,17 +177,23 @@ class Bookworm:GameScene {
 //        
 //    }
     
-    func colocaX(palavra: NSArray, letra: Int, neighbors:NSMutableArray) -> Bool {
+    func colocaX(palavra: String, letra: Int, neighbors:NSMutableArray) -> Bool {
+        var palavraArr = Array(palavra);
         
-        if(letra >= palavra.count){
+        if(letra >= palavraArr.count){
             return true;//Se toda a palavra foi inserida com sucesso, acaba o backtracking
         }
-        
+        println(neighbors.count);
         for n in neighbors {//Percorrendo as tiles vizinhas
             let tile = n as! Tile;
+            println(tile.x);
+            println(tile.y);
             if(tile.letraPrev == ""){ //Verifica se está ocupada
-                tile.letraPrev = palavra.objectAtIndex(letra) as! String;//Seta a tile como ocupada
+                tile.letraPrev = String(palavraArr[letra])// as! String;//Seta a tile como ocupada
                 if(colocaX(palavra, letra: letra + 1, neighbors: NSMutableArray(array: self.tabuleiro.getOrthoNeighbors(tile)))){//Continua a recursão
+                    let letraAux = LetraNode(texture: SKTexture(imageNamed: "square"), letra: String(palavraArr[letra]), tam: self.tam)
+                    self.tabuleiro.addLetraNode(tile.x, y: tile.y, letra: letraAux)
+                    println(palavraArr[letra]);
                     return true;//Se toda ele conseguiu inserir o resto das palavras, retorna true;
                 } else {
                     tile.letraPrev = "";//Se deu ruim, desocupa o tile.
