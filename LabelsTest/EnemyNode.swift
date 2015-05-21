@@ -14,7 +14,7 @@ class EnemyNode:SKSpriteNode {
     //intervalo entre disparos
     let INTERVAL:Double = 5.0
     
-    var reloadTime:Double = 0.0
+    var reloadTime:Double = 5.0
     
     required init?(coder aDecoder:NSCoder) {
         super.init(coder: aDecoder)

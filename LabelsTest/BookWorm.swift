@@ -35,42 +35,43 @@ class Bookworm:GameScene {
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         /* Called when a touch begins */
-        
-        for touch in (touches as! Set<UITouch>) {
-            let location = touch.locationInNode(self)
-            let locationGrid = touch.locationInNode(self.tabuleiro)
-            
-            if let body = physicsWorld.bodyAtPoint(location) {
-                if body.node!.name == "letra" {
-                    //let nodinho = body.node as! LetraNode
-                    //let letrinha:String = nodinho.letra
-                    
-                    //buscando a letra pela posição do toque na grid, e nao no bodyAtPoint
-                    if let tilezinha = self.tabuleiro.tileForCoord(locationGrid.x, y: locationGrid.y){
-                        if tilezinha.isActive == true{
-                            
-                            if self.curString == ""{
-                                //tabuleiro.tileForCoord(locationGrid.x, y: locationGrid.y)!.content?.alpha = 0.5
-                                self.eventoToque(tilezinha, locationGrid: locationGrid)
-                            }
-                            else {
-                                if letrasVizinhas.containsObject(tilezinha){
+        if(!perdeu){
+            for touch in (touches as! Set<UITouch>) {
+                let location = touch.locationInNode(self)
+                let locationGrid = touch.locationInNode(self.tabuleiro)
+                
+                if let body = physicsWorld.bodyAtPoint(location) {
+                    if body.node!.name == "letra" {
+                        //let nodinho = body.node as! LetraNode
+                        //let letrinha:String = nodinho.letra
+                        
+                        //buscando a letra pela posição do toque na grid, e nao no bodyAtPoint
+                        if let tilezinha = self.tabuleiro.tileForCoord(locationGrid.x, y: locationGrid.y){
+                            if tilezinha.isActive == true{
+                                
+                                if self.curString == ""{
+                                    //tabuleiro.tileForCoord(locationGrid.x, y: locationGrid.y)!.content?.alpha = 0.5
                                     self.eventoToque(tilezinha, locationGrid: locationGrid)
                                 }
-                                else{
-                                    self.apagar()
-                                    self.eventoToque(tilezinha, locationGrid: locationGrid)
+                                else {
+                                    if letrasVizinhas.containsObject(tilezinha){
+                                        self.eventoToque(tilezinha, locationGrid: locationGrid)
+                                    }
+                                    else{
+                                        self.apagar()
+                                        self.eventoToque(tilezinha, locationGrid: locationGrid)
+                                    }
                                 }
                             }
                         }
+                        
+
+                        
                     }
                     
-
-                    
-                }
-                
-                if body.node!.name == "refresh" {
-                    self.apagar()
+                    if body.node!.name == "refresh" {
+                        self.apagar()
+                    }
                 }
             }
         }
@@ -113,7 +114,7 @@ class Bookworm:GameScene {
     func createEnemy(){
         if enemy == nil{
             enemy = EnemyNode(texture: SKTexture(imageNamed: "churrasqueira"), tam: CGFloat(40))
-            enemy?.name = "enemy"
+            //enemy?.name = "enemy"
             enemy!.size = CGSizeMake(40, 40)
             enemy!.position = CGPointMake(telaNode.size.width/2 - CGFloat(40), -telaNode.size.height/2 + CGFloat(40))
             enemy!.physicsBody = SKPhysicsBody(rectangleOfSize: enemy!.size)
@@ -314,6 +315,7 @@ class Bookworm:GameScene {
     var lastUpdateTimeInterval:NSTimeInterval = 0.0
     var timeSinceLast:NSTimeInterval = 0
     var prevSeconds:Int = -1
+    var perdeu = false;
     override func update(currentTime: CFTimeInterval) {
         
         timeSinceLast = currentTime - self.lastUpdateTimeInterval
@@ -323,6 +325,13 @@ class Bookworm:GameScene {
             self.enemy!.runBehavior(self)
         }
         
+        if(enemy?.position.x <= player.position.x + player.size.width/2){
+            if(!perdeu){
+                player.runAction(SKAction.moveTo(CGPointMake(player.position.x - 1000, player.position.y), duration: 15.0))
+                self.runAction(SKAction.playSoundFileNamed("putaVida.mp3", waitForCompletion: false));
+                perdeu = true;
+            }
+        }
         //Controle do timer
 //        if((currentTime - lastUpdate) > 0.5){
 //            if(timeLeft > 0){
