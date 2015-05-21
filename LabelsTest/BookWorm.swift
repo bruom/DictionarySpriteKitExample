@@ -114,7 +114,7 @@ class Bookworm:GameScene {
     func createEnemy(){
         if enemy == nil{
             enemy = EnemyNode(texture: SKTexture(imageNamed: "churrasqueira"), tam: CGFloat(40))
-            //enemy?.name = "enemy"
+            enemy?.name = "enemy"
             enemy!.size = CGSizeMake(40, 40)
             enemy!.position = CGPointMake(telaNode.size.width/2 - CGFloat(40), -telaNode.size.height/2 + CGFloat(40))
             enemy!.physicsBody = SKPhysicsBody(rectangleOfSize: enemy!.size)
@@ -325,13 +325,10 @@ class Bookworm:GameScene {
             self.enemy!.runBehavior(self)
         }
         
-        if(enemy?.position.x <= player.position.x + player.size.width/2){
-            if(!perdeu){
-                player.runAction(SKAction.moveTo(CGPointMake(player.position.x - 1000, player.position.y), duration: 15.0))
-                self.runAction(SKAction.playSoundFileNamed("putaVida.mp3", waitForCompletion: false));
-                perdeu = true;
-            }
+        if(enemy?.position.x <= -200){//player.position.x + player.size.width/2){
+            self.gameOver(currentTime);
         }
+        
         //Controle do timer
 //        if((currentTime - lastUpdate) > 0.5){
 //            if(timeLeft > 0){
@@ -343,6 +340,19 @@ class Bookworm:GameScene {
 //            }
 //        }
         
+    }
+    
+    func gameOver(currentTime: CFTimeInterval) {
+        if(!perdeu){
+            player.runAction(SKAction.moveTo(CGPointMake(player.position.x - 1000, player.position.y), duration: 15.0))
+            self.runAction(SKAction.playSoundFileNamed("putaVida.mp3", waitForCompletion: false));
+            perdeu = true;
+            lastUpdate = currentTime;
+        } else {
+            if(currentTime > lastUpdate + 3.0){
+                self.vc?.performSegueWithIdentifier("gameOver", sender: score);
+            }
+        }
     }
 
     

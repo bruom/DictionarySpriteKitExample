@@ -38,7 +38,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="72" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="x3W-su-a9y">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="72" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="x3W-su-a9y">
                                 <rect key="frame" x="0.0" y="60" width="600" height="540"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -53,12 +53,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Teste" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b92-Tn-1m8">
-                                <rect key="frame" x="5" y="20" width="41" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="HeT-0G-xvX">
                                 <rect key="frame" x="181" y="17" width="239" height="29"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -72,17 +66,24 @@
                                     <action selector="trocaModoJogo:" destination="UKH-JF-PM0" eventType="valueChanged" id="nv8-qh-a0a"/>
                                 </connections>
                             </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AEC-dj-mO9">
+                                <rect key="frame" x="21" y="22" width="46" height="30"/>
+                                <state key="normal" title="HOME" backgroundImage="fausto.png">
+                                    <color key="titleColor" red="0.98699889519999995" green="0.063979521900000003" blue="0.059483956380000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="dba-gc-OV4" kind="show" id="vvL-WD-Gr2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="jTn-go-tc2" firstAttribute="top" secondItem="x3W-su-a9y" secondAttribute="bottom" id="0d4-y5-FFQ"/>
-                            <constraint firstItem="x3W-su-a9y" firstAttribute="top" secondItem="b92-Tn-1m8" secondAttribute="bottom" constant="20" id="25D-Ou-n3R"/>
                             <constraint firstItem="x3W-su-a9y" firstAttribute="leading" secondItem="WBb-on-LBk" secondAttribute="leading" id="31r-Ea-tMS"/>
                             <constraint firstItem="HeT-0G-xvX" firstAttribute="top" secondItem="59q-ip-Vvo" secondAttribute="bottom" constant="-3" id="7Bj-J5-Gac"/>
-                            <constraint firstAttribute="centerX" secondItem="b92-Tn-1m8" secondAttribute="centerX" id="b9s-uj-mcZ"/>
+                            <constraint firstItem="x3W-su-a9y" firstAttribute="top" secondItem="AEC-dj-mO9" secondAttribute="bottom" constant="8" id="ALn-rj-KhU"/>
                             <constraint firstAttribute="centerX" secondItem="HeT-0G-xvX" secondAttribute="centerX" id="bOm-iR-TLu"/>
                             <constraint firstAttribute="trailing" secondItem="x3W-su-a9y" secondAttribute="trailing" id="hCH-Fa-phX"/>
-                            <constraint firstItem="b92-Tn-1m8" firstAttribute="top" secondItem="59q-ip-Vvo" secondAttribute="bottom" id="nEf-Ta-QD3"/>
                         </constraints>
                     </view>
                     <connections>
@@ -200,6 +201,9 @@
             <point key="canvasLocation" x="221" y="747"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="fausto.png" width="90" height="99"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="R85-KO-bYs"/>
     </inferredMetricsTieBreakers>
