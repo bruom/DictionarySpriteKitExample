@@ -34,14 +34,14 @@ class GameScene: SKScene {
     var timeLabel : SKLabelNode!;
     var timeLeft = 10.00//Tempo inicial
     var totalScore : SKLabelNode!;
-    var lastUpdate : NSTimeInterval = 0;
+    var lastUpdate : NSTimeInterval = 0
     
     //Pontuação do jogador
     var score = 0;
 
 
     
-    var scienceVector = ["A", "A", "A", "A", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+    var scienceVector = ["A", "A", "A", "A", "B", "B", "C", "C", "D", "D", "D", "E", "E", "E", "E", "E", "F", "F", "G", "G", "H", "H", "H", "I", "I", "I", "J", "K", "L", "L", "M", "M", "N", "N", "O" , "O", "O", "P", "P", "Q", "R", "R", "S", "S", "S", "T", "T", "T", "T", "U", "U", "V", "W", "W", "X", "Y", "Z"]
     
     var palavrasTeste = ["English", "Potato", "Pirate", "Lexicus", "Dog", "Car", "Cheese", "Rubens", "Word", "Ayylmao"]
     

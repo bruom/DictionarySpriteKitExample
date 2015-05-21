@@ -18,7 +18,7 @@ class Bookworm:GameScene {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
-        self.setupScene(9)
+        self.setupScene(1)
         
         letrasVizinhas = NSMutableArray()
         letrasSelecionadas = NSMutableArray()
