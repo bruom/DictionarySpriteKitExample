@@ -13,6 +13,8 @@
 		15593A691B065A1A00ACEA0D /* Tabuleiro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15593A681B065A1A00ACEA0D /* Tabuleiro.swift */; };
 		15593A6B1B065ACF00ACEA0D /* Matriz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15593A6A1B065ACF00ACEA0D /* Matriz.swift */; };
 		15593A6D1B065DC600ACEA0D /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15593A6C1B065DC600ACEA0D /* Tile.swift */; };
+		15D3B33B1B0E4590004F0D05 /* EnemyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D3B33A1B0E4590004F0D05 /* EnemyNode.swift */; };
+		15D3B33D1B0E47F1004F0D05 /* LexicusNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D3B33C1B0E47F1004F0D05 /* LexicusNode.swift */; };
 		4E1F71D01B0E3E1C005C932A /* LexTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1F71CF1B0E3E1C005C932A /* LexTest.swift */; };
 		4E1F71D41B0E3F8B005C932A /* churrasqueira.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E1F71D11B0E3F8B005C932A /* churrasqueira.png */; };
 		4E1F71D51B0E3F8B005C932A /* fanta.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E1F71D21B0E3F8B005C932A /* fanta.png */; };
@@ -50,6 +52,8 @@
 		15593A681B065A1A00ACEA0D /* Tabuleiro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tabuleiro.swift; sourceTree = "<group>"; };
 		15593A6A1B065ACF00ACEA0D /* Matriz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matriz.swift; sourceTree = "<group>"; };
 		15593A6C1B065DC600ACEA0D /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
+		15D3B33A1B0E4590004F0D05 /* EnemyNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyNode.swift; sourceTree = "<group>"; };
+		15D3B33C1B0E47F1004F0D05 /* LexicusNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LexicusNode.swift; sourceTree = "<group>"; };
 		4E1F71CF1B0E3E1C005C932A /* LexTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LexTest.swift; sourceTree = "<group>"; };
 		4E1F71D11B0E3F8B005C932A /* churrasqueira.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = churrasqueira.png; sourceTree = "<group>"; };
 		4E1F71D21B0E3F8B005C932A /* fanta.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fanta.png; sourceTree = "<group>"; };
@@ -137,6 +141,8 @@
 				151922401B0A6424000AEC28 /* Scramble.swift */,
 				151922421B0A7870000AEC28 /* MainView.swift */,
 				4E1F71CF1B0E3E1C005C932A /* LexTest.swift */,
+				15D3B33A1B0E4590004F0D05 /* EnemyNode.swift */,
+				15D3B33C1B0E47F1004F0D05 /* LexicusNode.swift */,
 			);
 			path = LabelsTest;
 			sourceTree = "<group>";
@@ -282,10 +288,12 @@
 				4E2781501B0688DF00A278FB /* Pontuacao.swift in Sources */,
 				4E2781521B0688DF00A278FB /* PontuacaoTableViewCell.swift in Sources */,
 				D556F4D21B051C0300440249 /* GameScene.swift in Sources */,
+				15D3B33B1B0E4590004F0D05 /* EnemyNode.swift in Sources */,
 				D556F4D41B051C0300440249 /* GameViewController.swift in Sources */,
 				4E1F71D01B0E3E1C005C932A /* LexTest.swift in Sources */,
 				151922871B0BA261000AEC28 /* BookWorm.swift in Sources */,
 				D556F4CE1B051C0300440249 /* AppDelegate.swift in Sources */,
+				15D3B33D1B0E47F1004F0D05 /* LexicusNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
