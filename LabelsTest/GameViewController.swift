@@ -36,10 +36,14 @@ class GameViewController: UIViewController {
             aux.vc = self
             return aux
         }
-        else {
+        else if self.gameType == 1{
             let aux:Scramble = Scramble()
             return aux
+        } else {
+            let aux:LexTest = LexTest();
+            return aux;
         }
+        
     }()
 
     override func viewDidLoad() {

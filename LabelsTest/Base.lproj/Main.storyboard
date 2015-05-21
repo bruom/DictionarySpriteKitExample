@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dba-gc-OV4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dba-gc-OV4">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
         <!--Game View Controller-->
@@ -38,14 +38,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Teste" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b92-Tn-1m8">
-                                <rect key="frame" x="279" y="20" width="41" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="72" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="x3W-su-a9y">
-                                <rect key="frame" x="0.0" y="61" width="600" height="539"/>
+                                <rect key="frame" x="0.0" y="60" width="600" height="540"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -59,18 +53,40 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Teste" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b92-Tn-1m8">
+                                <rect key="frame" x="5" y="20" width="41" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="HeT-0G-xvX">
+                                <rect key="frame" x="181" y="17" width="239" height="29"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <segments>
+                                    <segment title="Bookworm"/>
+                                    <segment title="Scrambled"/>
+                                    <segment title="sei la"/>
+                                </segments>
+                                <color key="tintColor" red="0.98699889519999995" green="0.063979521900000003" blue="0.059483956380000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="trocaModoJogo:" destination="UKH-JF-PM0" eventType="valueChanged" id="nv8-qh-a0a"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="jTn-go-tc2" firstAttribute="top" secondItem="x3W-su-a9y" secondAttribute="bottom" id="0d4-y5-FFQ"/>
                             <constraint firstItem="x3W-su-a9y" firstAttribute="top" secondItem="b92-Tn-1m8" secondAttribute="bottom" constant="20" id="25D-Ou-n3R"/>
                             <constraint firstItem="x3W-su-a9y" firstAttribute="leading" secondItem="WBb-on-LBk" secondAttribute="leading" id="31r-Ea-tMS"/>
+                            <constraint firstItem="HeT-0G-xvX" firstAttribute="top" secondItem="59q-ip-Vvo" secondAttribute="bottom" constant="-3" id="7Bj-J5-Gac"/>
                             <constraint firstAttribute="centerX" secondItem="b92-Tn-1m8" secondAttribute="centerX" id="b9s-uj-mcZ"/>
+                            <constraint firstAttribute="centerX" secondItem="HeT-0G-xvX" secondAttribute="centerX" id="bOm-iR-TLu"/>
                             <constraint firstAttribute="trailing" secondItem="x3W-su-a9y" secondAttribute="trailing" id="hCH-Fa-phX"/>
                             <constraint firstItem="b92-Tn-1m8" firstAttribute="top" secondItem="59q-ip-Vvo" secondAttribute="bottom" id="nEf-Ta-QD3"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="modoJogo" destination="HeT-0G-xvX" id="h5i-9q-E2G"/>
                         <outlet property="tv" destination="x3W-su-a9y" id="4XG-Si-m53"/>
                     </connections>
                 </viewController>
@@ -160,6 +176,15 @@
                                     <action selector="go:" destination="12U-3O-shH" eventType="touchUpInside" id="xbe-hv-caA"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jSM-IN-ehA">
+                                <rect key="frame" x="284" y="324" width="32" height="30"/>
+                                <state key="normal" title="Beta">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="go:" destination="12U-3O-shH" eventType="touchUpInside" id="RTV-T0-W01"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -176,6 +201,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="fsf-W6-TMS"/>
+        <segue reference="R85-KO-bYs"/>
     </inferredMetricsTieBreakers>
 </document>
