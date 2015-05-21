@@ -154,7 +154,7 @@ class LexTest:GameScene {
             for j in 0...self.tabuleiro.grid.rows-1 {
                 if (tabuleiro.tileForPos(i, y: j)?.letraPrev == ""){
                     
-                    let letraAux = LetraNode(texture: SKTexture(imageNamed: "square"), letra: self.randomLetra(), tam: self.tam)
+                    let letraAux = LetraNode(texture: SKTexture(imageNamed: "fausto"), letra: self.randomLetra(), tam: self.tam)
                     tabuleiro.addLetraNode(i, y: j, letra: letraAux)
                     
                 }
