@@ -13,6 +13,10 @@
 		15593A691B065A1A00ACEA0D /* Tabuleiro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15593A681B065A1A00ACEA0D /* Tabuleiro.swift */; };
 		15593A6B1B065ACF00ACEA0D /* Matriz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15593A6A1B065ACF00ACEA0D /* Matriz.swift */; };
 		15593A6D1B065DC600ACEA0D /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15593A6C1B065DC600ACEA0D /* Tile.swift */; };
+		4E1F71D01B0E3E1C005C932A /* LexTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1F71CF1B0E3E1C005C932A /* LexTest.swift */; };
+		4E1F71D41B0E3F8B005C932A /* churrasqueira.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E1F71D11B0E3F8B005C932A /* churrasqueira.png */; };
+		4E1F71D51B0E3F8B005C932A /* fanta.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E1F71D21B0E3F8B005C932A /* fanta.png */; };
+		4E1F71D61B0E3F8B005C932A /* fausto.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E1F71D31B0E3F8B005C932A /* fausto.png */; };
 		4E2781501B0688DF00A278FB /* Pontuacao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E27814B1B0688DF00A278FB /* Pontuacao.swift */; };
 		4E2781511B0688DF00A278FB /* PontuacaoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E27814C1B0688DF00A278FB /* PontuacaoViewController.swift */; };
 		4E2781521B0688DF00A278FB /* PontuacaoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E27814D1B0688DF00A278FB /* PontuacaoTableViewCell.swift */; };
@@ -46,6 +50,10 @@
 		15593A681B065A1A00ACEA0D /* Tabuleiro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tabuleiro.swift; sourceTree = "<group>"; };
 		15593A6A1B065ACF00ACEA0D /* Matriz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matriz.swift; sourceTree = "<group>"; };
 		15593A6C1B065DC600ACEA0D /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
+		4E1F71CF1B0E3E1C005C932A /* LexTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LexTest.swift; sourceTree = "<group>"; };
+		4E1F71D11B0E3F8B005C932A /* churrasqueira.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = churrasqueira.png; sourceTree = "<group>"; };
+		4E1F71D21B0E3F8B005C932A /* fanta.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fanta.png; sourceTree = "<group>"; };
+		4E1F71D31B0E3F8B005C932A /* fausto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fausto.png; sourceTree = "<group>"; };
 		4E27814B1B0688DF00A278FB /* Pontuacao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pontuacao.swift; sourceTree = "<group>"; };
 		4E27814C1B0688DF00A278FB /* PontuacaoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PontuacaoViewController.swift; sourceTree = "<group>"; };
 		4E27814D1B0688DF00A278FB /* PontuacaoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PontuacaoTableViewCell.swift; sourceTree = "<group>"; };
@@ -113,6 +121,9 @@
 				D556F4D31B051C0300440249 /* GameViewController.swift */,
 				D556F4D51B051C0300440249 /* Main.storyboard */,
 				D556F4D81B051C0300440249 /* Images.xcassets */,
+				4E1F71D11B0E3F8B005C932A /* churrasqueira.png */,
+				4E1F71D21B0E3F8B005C932A /* fanta.png */,
+				4E1F71D31B0E3F8B005C932A /* fausto.png */,
 				D556F4DA1B051C0300440249 /* LaunchScreen.xib */,
 				D556F4CB1B051C0300440249 /* Supporting Files */,
 				15593A681B065A1A00ACEA0D /* Tabuleiro.swift */,
@@ -125,6 +136,7 @@
 				4E27814F1B0688DF00A278FB /* fotoPadrao.png */,
 				151922401B0A6424000AEC28 /* Scramble.swift */,
 				151922421B0A7870000AEC28 /* MainView.swift */,
+				4E1F71CF1B0E3E1C005C932A /* LexTest.swift */,
 			);
 			path = LabelsTest;
 			sourceTree = "<group>";
@@ -235,10 +247,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E2781541B0688DF00A278FB /* fotoPadrao.png in Resources */,
+				4E1F71D41B0E3F8B005C932A /* churrasqueira.png in Resources */,
 				4E2781531B0688DF00A278FB /* PontuacaoTableViewCell.xib in Resources */,
 				D556F4DC1B051C0300440249 /* LaunchScreen.xib in Resources */,
 				D556F4D91B051C0300440249 /* Images.xcassets in Resources */,
+				4E1F71D51B0E3F8B005C932A /* fanta.png in Resources */,
 				D556F4D01B051C0300440249 /* GameScene.sks in Resources */,
+				4E1F71D61B0E3F8B005C932A /* fausto.png in Resources */,
 				D556F4D71B051C0300440249 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,6 +283,7 @@
 				4E2781521B0688DF00A278FB /* PontuacaoTableViewCell.swift in Sources */,
 				D556F4D21B051C0300440249 /* GameScene.swift in Sources */,
 				D556F4D41B051C0300440249 /* GameViewController.swift in Sources */,
+				4E1F71D01B0E3E1C005C932A /* LexTest.swift in Sources */,
 				151922871B0BA261000AEC28 /* BookWorm.swift in Sources */,
 				D556F4CE1B051C0300440249 /* AppDelegate.swift in Sources */,
 			);
