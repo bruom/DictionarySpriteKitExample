@@ -27,7 +27,7 @@ class EnemyNode:SKSpriteNode {
     }
     
     func runBehavior(scene:SKScene) {
-        let gameScene = scene as! LexTest
+        let gameScene = scene as! Bookworm
         self.reload(gameScene.timeSinceLast)
         self.avancar()
         

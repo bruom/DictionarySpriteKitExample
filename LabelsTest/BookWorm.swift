@@ -15,10 +15,18 @@ class Bookworm:GameScene {
     
     var letrasVizinhas:NSMutableArray!
     
+    
+    //da tela do Lexicus
+    var enemy:EnemyNode? = nil
+    var player:LexicusNode!
+    var telaNode:SKSpriteNode!
+    
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
-        self.setupScene(1)
+        self.setupScene(8)
+        
+        self.setupLex()
         
         letrasVizinhas = NSMutableArray()
         letrasSelecionadas = NSMutableArray()
@@ -78,8 +86,41 @@ class Bookworm:GameScene {
                 for tile in letrasSelecionadas {
                     self.acertaTile(tile as! Tile)
                 }
+                self.player.fire(self.enemy!, tela: self.telaNode)
                 letrasSelecionadas = NSMutableArray()
             }
+        }
+    }
+    
+    func setupLex(){
+        telaNode = SKSpriteNode(imageNamed: "square")
+        telaNode.size = CGSizeMake(self.size.width*0.8, self.size.height*0.15)
+        telaNode.position = CGPointMake(self.size.width/2, self.size.height - self.telaNode.size.height/2)
+        self.addChild(telaNode)
+        
+        player = LexicusNode(texture: SKTexture(imageNamed: "fausto"), tam: 80)
+        player.size = CGSizeMake(60, 60)
+        player.position = CGPointMake(-telaNode.size.width/2 + CGFloat(40), -telaNode.size.height/2 + CGFloat(40))
+        player.physicsBody = SKPhysicsBody(rectangleOfSize: player.size)
+        player.physicsBody?.dynamic = false
+        player.physicsBody?.categoryBitMask = playerCategory
+        player.physicsBody?.contactTestBitMask = enemyCategory
+        telaNode.addChild(player)
+        
+        self.createEnemy()
+    }
+    
+    func createEnemy(){
+        if enemy == nil{
+            enemy = EnemyNode(texture: SKTexture(imageNamed: "churrasqueira"), tam: CGFloat(40))
+            enemy?.name = "enemy"
+            enemy!.size = CGSizeMake(40, 40)
+            enemy!.position = CGPointMake(telaNode.size.width/2 - CGFloat(40), -telaNode.size.height/2 + CGFloat(40))
+            enemy!.physicsBody = SKPhysicsBody(rectangleOfSize: enemy!.size)
+            enemy!.physicsBody?.dynamic = false
+            enemy!.physicsBody?.categoryBitMask = enemyCategory
+            enemy!.physicsBody?.contactTestBitMask = playerCategory | projectileCategory
+            telaNode.addChild(enemy!)
         }
     }
     
@@ -104,6 +145,13 @@ class Bookworm:GameScene {
         for tileVizinha in self.tabuleiro.getOrthoNeighborTiles(tabuleiro.tileForCoord(locationGrid.x, y: locationGrid.y)!) {
             letrasVizinhas.addObject(tileVizinha)
         }
+    }
+    
+    func enemyHit(){
+        
+        self.telaNode.childNodeWithName("enemy")?.removeFromParent()
+        enemy = nil
+        self.createEnemy()
     }
     
     func acertaTile(tile:Tile){
@@ -262,7 +310,18 @@ class Bookworm:GameScene {
         //return true
     }
     
+    
+    var lastUpdateTimeInterval:NSTimeInterval = 0.0
+    var timeSinceLast:NSTimeInterval = 0
+    var prevSeconds:Int = -1
     override func update(currentTime: CFTimeInterval) {
+        
+        timeSinceLast = currentTime - self.lastUpdateTimeInterval
+        self.lastUpdateTimeInterval = currentTime;
+        
+        if (enemy != nil){
+            self.enemy!.runBehavior(self)
+        }
         
         //Controle do timer
 //        if((currentTime - lastUpdate) > 0.5){
