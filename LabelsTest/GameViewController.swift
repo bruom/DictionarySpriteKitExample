@@ -31,19 +31,17 @@ class GameViewController: UIViewController {
     var skView:SKView!
     
     lazy var scene:SKScene = {
+        var aux:GameScene
         if self.gameType == 0{
-            let aux:Bookworm = Bookworm()
-            aux.vc = self
-            return aux
+            aux = Bookworm()
         }
         else if self.gameType == 1{
-            let aux:Scramble = Scramble()
-            return aux
+            aux = Scramble()
         } else {
-            let aux:LexTest = LexTest();
-            aux.vc = self
-            return aux;
+            aux = Scramble();
         }
+        aux.vc = self
+        return aux
         
     }()
 

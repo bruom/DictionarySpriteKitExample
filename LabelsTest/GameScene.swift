@@ -38,6 +38,13 @@ class GameScene: SKScene {
     
     //Pontuação do jogador
     var score = 0;
+    
+    
+    //da tela do Lexicus
+    var enemy:EnemyNode? = nil
+    var player:LexicusNode!
+    var telaNode:SKSpriteNode!
+
 
 
     
@@ -144,6 +151,45 @@ class GameScene: SKScene {
         totalScore.position = CGPointMake(self.frame.size.width * 0.9, self.frame.size.height * 0.9);
         totalScore.text = "0";
         self.addChild(totalScore);
+    }
+    
+    func setupLex(){
+        telaNode = SKSpriteNode(imageNamed: "square")
+        telaNode.size = CGSizeMake(self.size.width*0.8, self.size.height*0.15)
+        telaNode.position = CGPointMake(self.size.width/2, self.size.height - self.telaNode.size.height/2)
+        self.addChild(telaNode)
+        
+        player = LexicusNode(texture: SKTexture(imageNamed: "fausto"), tam: 80)
+        player.size = CGSizeMake(60, 60)
+        player.position = CGPointMake(-telaNode.size.width/2 + CGFloat(40), -telaNode.size.height/2 + CGFloat(40))
+        player.physicsBody = SKPhysicsBody(rectangleOfSize: player.size)
+        player.physicsBody?.dynamic = false
+        player.physicsBody?.categoryBitMask = playerCategory
+        player.physicsBody?.contactTestBitMask = enemyCategory
+        telaNode.addChild(player)
+        
+        self.createEnemy()
+    }
+    
+    func createEnemy(){
+        if enemy == nil{
+            enemy = EnemyNode(texture: SKTexture(imageNamed: "churrasqueira"), tam: CGFloat(40))
+            enemy?.name = "enemy"
+            enemy!.size = CGSizeMake(40, 40)
+            enemy!.position = CGPointMake(telaNode.size.width/2 - CGFloat(40), -telaNode.size.height/2 + CGFloat(40))
+            enemy!.physicsBody = SKPhysicsBody(rectangleOfSize: enemy!.size)
+            enemy!.physicsBody?.dynamic = false
+            enemy!.physicsBody?.categoryBitMask = enemyCategory
+            enemy!.physicsBody?.contactTestBitMask = playerCategory | projectileCategory
+            telaNode.addChild(enemy!)
+        }
+    }
+    
+    func enemyHit(){
+        
+        self.telaNode.childNodeWithName("enemy")?.removeFromParent()
+        enemy = nil
+        self.createEnemy()
     }
     
     func mudarParaBookworm(seed:NSMutableArray){
@@ -299,18 +345,48 @@ class GameScene: SKScene {
         //self.inval
     }
     
-    override func update(currentTime: CFTimeInterval) {
-        
-        //Controle do timer
-        if((currentTime - lastUpdate) > 0.5){
-            if(timeLeft > 0){
-                lastUpdate = currentTime;
-                timeLeft -= 0.5;
-                timeLabel.text = "\(Int(timeLeft))";
-            } else {
-                self.gameOver();
+    func gameOver(currentTime: CFTimeInterval) {
+        if(!perdeu){
+            player.runAction(SKAction.moveTo(CGPointMake(player.position.x - 1000, player.position.y), duration: 15.0))
+            self.runAction(SKAction.playSoundFileNamed("putaVida.mp3", waitForCompletion: false));
+            perdeu = true;
+            lastUpdate = currentTime;
+        } else {
+            if(currentTime > lastUpdate + 3.0){
+                self.vc?.performSegueWithIdentifier("gameOver", sender: score);
             }
         }
+    }
+    
+    
+    var lastUpdateTimeInterval:NSTimeInterval = 0.0
+    var timeSinceLast:NSTimeInterval = 0
+    var prevSeconds:Int = -1
+    var perdeu = false;
+    override func update(currentTime: CFTimeInterval) {
+        
+        timeSinceLast = currentTime - self.lastUpdateTimeInterval
+        self.lastUpdateTimeInterval = currentTime;
+        
+        //controles da tela do Lexicus
+        if (enemy != nil){
+            self.enemy!.runBehavior(self)
+        }
+        
+        if(enemy?.position.x <= -200){//player.position.x + player.size.width/2){
+            self.gameOver(currentTime);
+        }
+        
+        //Controle do timer
+//        if((currentTime - lastUpdate) > 0.5){
+//            if(timeLeft > 0){
+//                lastUpdate = currentTime;
+//                timeLeft -= 0.5;
+//                timeLabel.text = "\(Int(timeLeft))";
+//            } else {
+//                self.gameOver();
+//            }
+//        }
         
     }
     

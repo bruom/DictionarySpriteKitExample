@@ -8,24 +8,12 @@
 
 import SpriteKit
 
-class Scramble:SKScene {
-    var lastUpdate : NSTimeInterval = 0;
-    var curString:String = ""
-    var myLabel:SKLabelNode!
-    var tam:CGFloat = CGFloat(80)
+class Scramble:GameScene {
     var prompt:SKLabelNode!
     
-    var timeLabel : SKLabelNode!;
-    var timeLeft = 60.00
     
     var target:String!
     
-    
-    var scienceVector = ["A", "A", "A", "A", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-    
-    var palavrasTeste = ["English", "Potato", "Pirate", "Lexicus", "Dog", "Car", "Cheese"]
-    
-    var tabuleiro:Tabuleiro!
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -54,6 +42,8 @@ class Scramble:SKScene {
         
         timeLabel = SKLabelNode(fontNamed: "Comic Sans")//AYY
         timeLabel.position = CGPointMake(self.frame.size.width * 0.1, self.frame.size.height * 0.9);
+        
+        self.setupLex()
         
         
     }
@@ -101,9 +91,10 @@ class Scramble:SKScene {
         }
     }
     
-    func validaPalavra(palavra: String) {
+    override func validaPalavra(palavra: String) {
         if palavra == target {
             self.popScore("👍+8001!")
+            self.player.fire(self.enemy!, tela: self.telaNode)
         }
     }
     
@@ -138,7 +129,7 @@ class Scramble:SKScene {
         
     }
     
-    func popScore(score:String){
+    override func popScore(score:String){
         let scoreLabel = SKLabelNode(fontNamed: "Helvetica")
         scoreLabel.text = score
         scoreLabel.position = CGPointMake(self.size.width/2, self.size.height*0.2)
@@ -152,7 +143,7 @@ class Scramble:SKScene {
         })
     }
     
-    func encheLetras(seed:NSMutableArray) {
+    override func encheLetras(seed:NSMutableArray) {
         var letrasFinal = Array<LetraNode>()
         for i in 0...seed.count-1 {
             let letraAux:LetraNode = LetraNode(texture: SKTexture(imageNamed: "square"), letra: seed.objectAtIndex(i) as! String, tam: self.tam)
@@ -168,21 +159,7 @@ class Scramble:SKScene {
         }
     }
     
-    func randomLetra() -> String {
-        let ij = arc4random_uniform(UInt32(scienceVector.count-1))
-        return scienceVector[Int(ij)]
-    }
     
-    
-    override func update(currentTime: CFTimeInterval) {
-        if((currentTime - lastUpdate) > 0.5){
-            if(timeLeft > 0){
-                timeLeft -= 0.5;
-                timeLabel.text = "\(Int(timeLeft))";
-            }
-        }
-        /* Called before each frame is rendered */
-    }
 
     
 }

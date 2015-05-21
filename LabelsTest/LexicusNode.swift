@@ -32,7 +32,7 @@ class LexicusNode:SKSpriteNode {
         let shotAction = SKAction.moveTo(target.position, duration: 0.5)
         projectile.runAction(shotAction, completion: { () -> Void in
             projectile.removeFromParent()
-            var scene = tela.scene as! Bookworm
+            var scene = tela.scene as! GameScene
             scene.enemyHit()
         })
     }
