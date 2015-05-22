@@ -17,6 +17,21 @@ extension Array {
         }
         return list
     }
+    
+    func pegaValor() -> Int {
+        return 0;
+    }
+}
+
+class ValorLetra : NSObject {
+    var valor : Int;
+    var letra : String;
+
+    
+    init(valor: Int, letra: String) {
+        self.valor = valor;
+        self.letra = letra;
+    }
 }
 
 class GameScene: SKScene {
@@ -38,6 +53,8 @@ class GameScene: SKScene {
     
     //Pontuação do jogador
     var score = 0;
+    var possibleScore = 0;
+    
     var enemiesDefeated:Int = 0
     var perdeu = false
     var venceu = false
@@ -48,9 +65,10 @@ class GameScene: SKScene {
     var telaNode:SKSpriteNode!
 
 
-
     
-    var scienceVector = ["A", "A", "A", "A", "B", "B", "C", "C", "D", "D", "D", "E", "E", "E", "E", "E", "F", "F", "G", "G", "H", "H", "H", "I", "I", "I", "J", "K", "L", "L", "M", "M", "N", "N", "O" , "O", "O", "P", "P", "Q", "R", "R", "S", "S", "S", "T", "T", "T", "T", "U", "U", "V", "W", "W", "X", "Y", "Z"]
+//    var scienceVector = ["A", "A", "A", "A", "B", "B", "C", "C", "D", "D", "D", "E", "E", "E", "E", "E", "F", "F", "G", "G", "H", "H", "H", "I", "I", "I", "J", "K", "L", "L", "M", "M", "N", "N", "O" , "O", "O", "P", "P", "Q", "R", "R", "S", "S", "S", "T", "T", "T", "T", "U", "U", "V", "W", "W", "X", "Y", "Z"]
+
+    var scienceVector = [ValorLetra(valor: 1, letra: "A"), ValorLetra(valor: 1, letra: "A"), ValorLetra(valor: 1, letra: "A"), ValorLetra(valor: 1, letra: "A"), ValorLetra(valor: 2, letra: "B"), ValorLetra(valor: 2, letra: "B"), ValorLetra(valor: 2, letra: "C"), ValorLetra(valor: 2, letra: "C"), ValorLetra(valor: 1, letra: "D"), ValorLetra(valor: 1, letra: "D"), ValorLetra(valor: 1, letra: "D"), ValorLetra(valor: 1, letra: "E"), ValorLetra(valor: 1, letra: "E"), ValorLetra(valor: 1, letra: "E"), ValorLetra(valor: 1, letra: "E"), ValorLetra(valor: 1, letra: "E"), ValorLetra(valor: 2, letra: "F"), ValorLetra(valor: 2, letra: "F"), ValorLetra(valor: 2, letra: "G"), ValorLetra(valor: 2, letra: "G"), ValorLetra(valor: 1, letra: "H"), ValorLetra(valor: 1, letra: "H"), ValorLetra(valor: 1, letra: "H"), ValorLetra(valor: 1, letra: "I"), ValorLetra(valor: 1, letra: "I"), ValorLetra(valor: 1, letra: "I"), ValorLetra(valor: 3, letra: "J"), ValorLetra(valor: 3, letra: "K"), ValorLetra(valor: 2, letra: "L"), ValorLetra(valor: 2, letra: "L"), ValorLetra(valor: 2, letra: "M"), ValorLetra(valor: 2, letra: "M"), ValorLetra(valor: 2, letra: "N"), ValorLetra(valor: 2, letra: "N"), ValorLetra(valor: 1, letra: "O") , ValorLetra(valor: 1, letra: "O"), ValorLetra(valor: 1, letra: "O"), ValorLetra(valor: 2, letra: "P"), ValorLetra(valor: 2, letra: "P"), ValorLetra(valor: 3, letra: "Q"), ValorLetra(valor: 2, letra: "R"), ValorLetra(valor: 2, letra: "R"), ValorLetra(valor: 1, letra: "S"), ValorLetra(valor: 1, letra: "S"), ValorLetra(valor: 1, letra: "S"), ValorLetra(valor: 1, letra: "T"), ValorLetra(valor: 1, letra: "T"), ValorLetra(valor: 1, letra: "T"), ValorLetra(valor: 1, letra: "T"), ValorLetra(valor: 2, letra: "U"), ValorLetra(valor: 2, letra: "U"), ValorLetra(valor: 3, letra: "V"), ValorLetra(valor: 2, letra: "W"), ValorLetra(valor: 2, letra: "W"), ValorLetra(valor: 3, letra: "X"), ValorLetra(valor: 3, letra: "Y"), ValorLetra(valor: 3, letra: "Z")];//Puta vida. Conferir se valores estão todos certos
     
     var palavrasTeste = ["English", "Potato", "Pirate", "Lexicus", "Dog", "Car", "Cheese", "Rubens", "Word", "Ayylmao"]
     
@@ -58,14 +76,12 @@ class GameScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-        
         self.setupScene(2)//Parametro de quantas palavras serão seedadas.
         
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         /* Called when a touch begins */
-        
         for touch in (touches as! Set<UITouch>) {
             let location = touch.locationInNode(self)
             let locationGrid = touch.locationInNode(self.tabuleiro)
@@ -128,7 +144,6 @@ class GameScene: SKScene {
         myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:100);
         
         self.addChild(myLabel)
-        
         reButton = SKSpriteNode(imageNamed: "apple")
         reButton.name = "refresh"
         reButton.size = CGSizeMake(80, 80)
@@ -348,7 +363,8 @@ class GameScene: SKScene {
     //Pega uma letra aleatoriamente do vetor
     func randomLetra() -> String {
         let ij = arc4random_uniform(UInt32(scienceVector.count-1))
-        return scienceVector[Int(ij)]
+        return scienceVector[Int(ij)].letra;
+        
     }
     
     //Força a troca de view

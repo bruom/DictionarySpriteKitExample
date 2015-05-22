@@ -79,9 +79,10 @@ class Bookworm:GameScene {
     override func validaPalavra(palavra: String) {
         for resposta in palavrasTeste {
             if resposta.uppercaseString == palavra {
-                score += Int(timeLeft)*10 * count(palavra);
+                score += Int(timeLeft)*10 * count(palavra) * possibleScore;
                 totalScore.text = "\(score)";
-                self.popScore("\(Int(timeLeft)*10 * count(palavra))")
+                self.popScore("\(Int(timeLeft)*10 * count(palavra) * possibleScore)")
+                possibleScore = 0;
                 curString = ""
                 for tile in letrasSelecionadas {
                     self.acertaTile(tile as! Tile)
@@ -105,6 +106,14 @@ class Bookworm:GameScene {
         println(letrinha)
         self.curString = "\(curString)\(letrinha)"
         self.myLabel.text = curString
+        for vl in scienceVector{
+            if(vl.letra == letrinha){
+                possibleScore += vl.valor;//Adiciona o valor da letra no possivel valor.
+                println(possibleScore);
+                break;
+            }
+        }
+        
         self.validaPalavra(myLabel.text)
         self.myLabel.physicsBody = SKPhysicsBody(rectangleOfSize: myLabel.frame.size)
         myLabel.physicsBody?.dynamic = false
@@ -119,7 +128,8 @@ class Bookworm:GameScene {
         }
     }
     
-    
+    //rubens: 5400
+    //ayylmao: 8400
     
     func acertaTile(tile:Tile){
         tile.content?.alpha = 0.1
@@ -127,6 +137,7 @@ class Bookworm:GameScene {
     
     func apagar(){
         curString = ""
+        possibleScore = 0;
         for tile in letrasSelecionadas {
             //jesus
             let tileAux = tile as! Tile
