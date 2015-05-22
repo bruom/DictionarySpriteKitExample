@@ -38,7 +38,9 @@ class GameScene: SKScene {
     
     //Pontuação do jogador
     var score = 0;
-    
+    var enemiesDefeated:Int = 0
+    var perdeu = false
+    var venceu = false
     
     //da tela do Lexicus
     var enemy:EnemyNode? = nil
@@ -111,8 +113,12 @@ class GameScene: SKScene {
         }
     }
     
+    func prep(){
+        
+    }
+    
     func setupScene(num:Int){
-        self.size = view!.frame.size
+        //self.size = view!.frame.size
         myLabel = SKLabelNode(fontNamed:"Chalkduster")
         myLabel.name = "label"
         myLabel.physicsBody = SKPhysicsBody(rectangleOfSize: myLabel.frame.size)
@@ -172,7 +178,7 @@ class GameScene: SKScene {
     }
     
     func createEnemy(){
-        if enemy == nil{
+        if enemy == nil  && !venceu && !perdeu{
             enemy = EnemyNode(texture: SKTexture(imageNamed: "churrasqueira"), tam: CGFloat(40))
             enemy?.name = "enemy"
             enemy!.size = CGSizeMake(40, 40)
@@ -189,7 +195,14 @@ class GameScene: SKScene {
         
         self.telaNode.childNodeWithName("enemy")?.removeFromParent()
         enemy = nil
-        self.createEnemy()
+        
+        self.enemiesDefeated++
+        if enemiesDefeated >= 5 {
+            self.win()
+        }
+        else{
+            self.createEnemy()
+        }
     }
     
     func mudarParaBookworm(seed:NSMutableArray){
@@ -345,6 +358,14 @@ class GameScene: SKScene {
         //self.inval
     }
     
+    func win(){
+        if(!venceu){
+            venceu = true
+            self.myLabel.text = "VENCEU"
+        }
+        
+    }
+    
     func gameOver(currentTime: CFTimeInterval) {
         if(!perdeu){
             player.runAction(SKAction.moveTo(CGPointMake(player.position.x - 1000, player.position.y), duration: 15.0))
@@ -362,7 +383,7 @@ class GameScene: SKScene {
     var lastUpdateTimeInterval:NSTimeInterval = 0.0
     var timeSinceLast:NSTimeInterval = 0
     var prevSeconds:Int = -1
-    var perdeu = false;
+    
     override func update(currentTime: CFTimeInterval) {
         
         timeSinceLast = currentTime - self.lastUpdateTimeInterval
@@ -371,11 +392,12 @@ class GameScene: SKScene {
         //controles da tela do Lexicus
         if (enemy != nil){
             self.enemy!.runBehavior(self)
+            
+            if(enemy?.position.x <= -200){//player.position.x + player.size.width/2){
+                self.gameOver(currentTime);
+            }
         }
         
-        if(enemy?.position.x <= -200){//player.position.x + player.size.width/2){
-            self.gameOver(currentTime);
-        }
         
         //Controle do timer
 //        if((currentTime - lastUpdate) > 0.5){

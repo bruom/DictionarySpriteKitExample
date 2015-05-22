@@ -23,6 +23,7 @@ class EnemyNode:SKSpriteNode {
     init(texture:SKTexture, tam:CGFloat){
         super.init(texture: texture, color: UIColor.clearColor(), size: texture.size())
         self.size = CGSizeMake(tam, tam)
+        self.reloadTime = 5.0
         
     }
     

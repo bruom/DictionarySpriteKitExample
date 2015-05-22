@@ -29,8 +29,10 @@ class GameViewController: UIViewController {
     
     var gameType:Int = 0 //0 Grid, 1 Scramble
     var skView:SKView!
+    var inGame:Bool! = false
+    var instructions:UILabel!
     
-    lazy var scene:SKScene = {
+    lazy var scene:GameScene = {
         var aux:GameScene
         if self.gameType == 0{
             aux = Bookworm()
@@ -55,11 +57,23 @@ class GameViewController: UIViewController {
         self.view.backgroundColor = UIColor.whiteColor()
         
         
+        //colocar instruções aqui
+        instructions = UILabel(frame: CGRectMake(300, 300, 300, 30))
+        instructions.text = "LOADING . . ."
+        self.view.addSubview(instructions)
+        
+        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        dispatch_async(dispatch_get_global_queue(priority, 0), { () -> Void in
+            self.scene.size = self.view.frame.size
+            self.scene.prep()
+            self.skView.ignoresSiblingOrder = true
+            self.scene.scaleMode = .AspectFill
+        })
+        
+        
 //        let scene:Scramble = Scramble()
         
-        skView.ignoresSiblingOrder = true
-        scene.scaleMode = .AspectFill
-        skView.presentScene(scene)
+        
 
 //        if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
 //            scene.vc = self
@@ -79,6 +93,15 @@ class GameViewController: UIViewController {
 //        }
     }
 
+
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        if !(inGame){
+            inGame = true
+            self.instructions.removeFromSuperview()
+            self.skView.presentScene(self.scene)
+        }
+    }
+    
     override func shouldAutorotate() -> Bool {
         return true
     }

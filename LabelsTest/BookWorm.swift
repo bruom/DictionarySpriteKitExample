@@ -15,14 +15,17 @@ class Bookworm:GameScene {
     
     var letrasVizinhas:NSMutableArray!
     
-    
+    override func prep(){
+        self.setupScene(8)
+        self.setupLex()
+    }
         
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
-        self.setupScene(8)
-        
-        self.setupLex()
+//        self.setupScene(8)
+//        
+//        self.setupLex()
         
         letrasVizinhas = NSMutableArray()
         letrasSelecionadas = NSMutableArray()
@@ -31,7 +34,7 @@ class Bookworm:GameScene {
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         /* Called when a touch begins */
-        if(!perdeu){
+        if(!perdeu && !venceu){
             for touch in (touches as! Set<UITouch>) {
                 let location = touch.locationInNode(self)
                 let locationGrid = touch.locationInNode(self.tabuleiro)
