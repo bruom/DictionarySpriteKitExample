@@ -26,6 +26,7 @@
 		4E2781521B0688DF00A278FB /* PontuacaoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E27814D1B0688DF00A278FB /* PontuacaoTableViewCell.swift */; };
 		4E2781531B0688DF00A278FB /* PontuacaoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E27814E1B0688DF00A278FB /* PontuacaoTableViewCell.xib */; };
 		4E2781541B0688DF00A278FB /* fotoPadrao.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E27814F1B0688DF00A278FB /* fotoPadrao.png */; };
+		4E6EE19E1B1392AC002B3C3A /* EncyDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EE19D1B1392AC002B3C3A /* EncyDetailsCell.swift */; };
 		4EDAC8D31B0FBE0400C2DF05 /* EncyTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDAC8D21B0FBE0400C2DF05 /* EncyTable.swift */; };
 		4EDAC8D51B0FBE2C00C2DF05 /* EncyDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDAC8D41B0FBE2C00C2DF05 /* EncyDetails.swift */; };
 		D556F4CE1B051C0300440249 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556F4CD1B051C0300440249 /* AppDelegate.swift */; };
@@ -69,6 +70,7 @@
 		4E27814D1B0688DF00A278FB /* PontuacaoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PontuacaoTableViewCell.swift; sourceTree = "<group>"; };
 		4E27814E1B0688DF00A278FB /* PontuacaoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PontuacaoTableViewCell.xib; sourceTree = "<group>"; };
 		4E27814F1B0688DF00A278FB /* fotoPadrao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fotoPadrao.png; sourceTree = "<group>"; };
+		4E6EE19D1B1392AC002B3C3A /* EncyDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncyDetailsCell.swift; sourceTree = "<group>"; };
 		4EDAC8D21B0FBE0400C2DF05 /* EncyTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncyTable.swift; sourceTree = "<group>"; };
 		4EDAC8D41B0FBE2C00C2DF05 /* EncyDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncyDetails.swift; sourceTree = "<group>"; };
 		D556F4C81B051C0300440249 /* LabelsTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LabelsTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,6 +157,7 @@
 				15D3B33C1B0E47F1004F0D05 /* LexicusNode.swift */,
 				4EDAC8D21B0FBE0400C2DF05 /* EncyTable.swift */,
 				4EDAC8D41B0FBE2C00C2DF05 /* EncyDetails.swift */,
+				4E6EE19D1B1392AC002B3C3A /* EncyDetailsCell.swift */,
 			);
 			path = LabelsTest;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 			files = (
 				D5707D4D1B051ECF0007C567 /* LetraNode.swift in Sources */,
 				151922431B0A7870000AEC28 /* MainView.swift in Sources */,
+				4E6EE19E1B1392AC002B3C3A /* EncyDetailsCell.swift in Sources */,
 				4E2781511B0688DF00A278FB /* PontuacaoViewController.swift in Sources */,
 				15593A691B065A1A00ACEA0D /* Tabuleiro.swift in Sources */,
 				15593A6B1B065ACF00ACEA0D /* Matriz.swift in Sources */,
