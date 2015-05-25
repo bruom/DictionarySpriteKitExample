@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class EncyDetails: UIViewController {
+class EncyDetails: UIViewController, UISplitViewControllerDelegate {
 
     @IBOutlet weak var teste: UILabel!
     var q : String?
@@ -27,6 +27,8 @@ class EncyDetails: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad();
+        self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible;
+
         let value = UIInterfaceOrientation.LandscapeLeft.rawValue;
         UIDevice.currentDevice().setValue(value, forKey: "orientation");
         
@@ -42,4 +44,12 @@ class EncyDetails: UIViewController {
     override func shouldAutorotate() -> Bool {
         return false;
     }
+    
+//    func splitViewController(svc: UISplitViewController, shouldHideViewController vc: UIViewController, inOrientation orientation: UIInterfaceOrientation) -> Bool {
+//        return false;
+//
+//    }
+//    - (BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation{
+//        return NO;
+//    }
 }
