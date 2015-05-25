@@ -181,8 +181,8 @@ class GameScene: SKScene {
         self.addChild(telaNode)
         
         player = LexicusNode(texture: SKTexture(imageNamed: "lex1"), tam: 80)
-        player.size = CGSizeMake(60, 60)
-        player.position = CGPointMake(-telaNode.size.width/2 + CGFloat(40), -telaNode.size.height/2 + CGFloat(40))
+        player.size = CGSizeMake(80, 80)
+        player.position = CGPointMake(-telaNode.size.width/2 + CGFloat(50), -telaNode.size.height/2 + CGFloat(50))
         player.physicsBody = SKPhysicsBody(rectangleOfSize: player.size)
         player.physicsBody?.dynamic = false
         player.physicsBody?.categoryBitMask = playerCategory

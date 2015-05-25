@@ -188,10 +188,13 @@ class Bookworm:GameScene {
     }
     
     override func trocaLetras() {
+        self.apagar()
+        self.letrasSelecionadas = NSMutableArray()
         for i in 0...self.tabuleiro.grid.columns-1 {
             for j in 0...self.tabuleiro.grid.rows-1 {
                 let letraAux = LetraNode(texture: SKTexture(imageNamed: "square"), letra: proximoTabuleiro.tileForPos(i, y: j)?.content!.letra as String!, tam: self.tam)
                 tabuleiro.updateLetraNode(i, y: j, letra: letraAux)
+                tabuleiro.tileForPos(i, y: j)?.isActive = true
             }
         }
         self.preparaProximo()
