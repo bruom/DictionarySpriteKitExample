@@ -180,7 +180,7 @@ class GameScene: SKScene {
         telaNode.position = CGPointMake(self.size.width/2, self.size.height - self.telaNode.size.height/2)
         self.addChild(telaNode)
         
-        player = LexicusNode(texture: SKTexture(imageNamed: "fausto"), tam: 80)
+        player = LexicusNode(texture: SKTexture(imageNamed: "lex1"), tam: 80)
         player.size = CGSizeMake(60, 60)
         player.position = CGPointMake(-telaNode.size.width/2 + CGFloat(40), -telaNode.size.height/2 + CGFloat(40))
         player.physicsBody = SKPhysicsBody(rectangleOfSize: player.size)
@@ -188,6 +188,17 @@ class GameScene: SKScene {
         player.physicsBody?.categoryBitMask = playerCategory
         player.physicsBody?.contactTestBitMask = enemyCategory
         telaNode.addChild(player)
+        
+        player.xScale = -1.0
+        let animLegal = SKAction.animateWithTextures([
+            SKTexture(imageNamed: "lex1"),
+            SKTexture(imageNamed: "lex1b"),
+            SKTexture(imageNamed: "lex1")
+            ], timePerFrame: 1.5)
+        
+        let animAction = SKAction.repeatActionForever(animLegal)
+        
+        player.runAction(animAction, withKey: "idle")
         
         self.createEnemy()
     }
@@ -384,6 +395,16 @@ class GameScene: SKScene {
     
     func gameOver(currentTime: CFTimeInterval) {
         if(!perdeu){
+            player.xScale = -1.0
+            let animLegal = SKAction.animateWithTextures([
+                SKTexture(imageNamed: "lex1"),
+                SKTexture(imageNamed: "lex2"),
+                SKTexture(imageNamed: "lex3")
+                ], timePerFrame: 0.8)
+            
+            let animAction = SKAction.repeatActionForever(animLegal)
+            
+            player.runAction(animAction, withKey: "escapar")
             player.runAction(SKAction.moveTo(CGPointMake(player.position.x - 1000, player.position.y), duration: 15.0))
             self.runAction(SKAction.playSoundFileNamed("putaVida.mp3", waitForCompletion: false));
             perdeu = true;

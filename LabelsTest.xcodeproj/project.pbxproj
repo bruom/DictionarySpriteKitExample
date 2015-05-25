@@ -13,6 +13,7 @@
 		15593A691B065A1A00ACEA0D /* Tabuleiro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15593A681B065A1A00ACEA0D /* Tabuleiro.swift */; };
 		15593A6B1B065ACF00ACEA0D /* Matriz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15593A6A1B065ACF00ACEA0D /* Matriz.swift */; };
 		15593A6D1B065DC600ACEA0D /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15593A6C1B065DC600ACEA0D /* Tile.swift */; };
+		157304871B138745005FD270 /* Lexicus.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 157304861B138745005FD270 /* Lexicus.atlas */; };
 		15D3B33B1B0E4590004F0D05 /* EnemyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D3B33A1B0E4590004F0D05 /* EnemyNode.swift */; };
 		15D3B33D1B0E47F1004F0D05 /* LexicusNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D3B33C1B0E47F1004F0D05 /* LexicusNode.swift */; };
 		4E1F71D01B0E3E1C005C932A /* LexTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1F71CF1B0E3E1C005C932A /* LexTest.swift */; };
@@ -55,6 +56,7 @@
 		15593A681B065A1A00ACEA0D /* Tabuleiro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tabuleiro.swift; sourceTree = "<group>"; };
 		15593A6A1B065ACF00ACEA0D /* Matriz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matriz.swift; sourceTree = "<group>"; };
 		15593A6C1B065DC600ACEA0D /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
+		157304861B138745005FD270 /* Lexicus.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Lexicus.atlas; sourceTree = "<group>"; };
 		15D3B33A1B0E4590004F0D05 /* EnemyNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyNode.swift; sourceTree = "<group>"; };
 		15D3B33C1B0E47F1004F0D05 /* LexicusNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LexicusNode.swift; sourceTree = "<group>"; };
 		4E1F71CF1B0E3E1C005C932A /* LexTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LexTest.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				D556F4D11B051C0300440249 /* GameScene.swift */,
 				D556F4D31B051C0300440249 /* GameViewController.swift */,
 				D556F4D51B051C0300440249 /* Main.storyboard */,
+				157304861B138745005FD270 /* Lexicus.atlas */,
 				D556F4D81B051C0300440249 /* Images.xcassets */,
 				4E1F71D11B0E3F8B005C932A /* churrasqueira.png */,
 				4E1F71D21B0E3F8B005C932A /* fanta.png */,
@@ -264,6 +267,7 @@
 				4E2781541B0688DF00A278FB /* fotoPadrao.png in Resources */,
 				4E1F71D41B0E3F8B005C932A /* churrasqueira.png in Resources */,
 				4E2781531B0688DF00A278FB /* PontuacaoTableViewCell.xib in Resources */,
+				157304871B138745005FD270 /* Lexicus.atlas in Resources */,
 				D556F4DC1B051C0300440249 /* LaunchScreen.xib in Resources */,
 				D556F4D91B051C0300440249 /* Images.xcassets in Resources */,
 				4E1F71D51B0E3F8B005C932A /* fanta.png in Resources */,
