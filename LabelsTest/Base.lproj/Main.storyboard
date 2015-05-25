@@ -138,8 +138,8 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vzc-QU-qkE" id="lLQ-bG-Dy3">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Texto" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3DK-Jc-SCu">
-                                            <rect key="frame" x="19" y="8" width="42" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3DK-Jc-SCu">
+                                            <rect key="frame" x="19" y="8" width="5" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -310,7 +310,7 @@
         <image name="fausto.png" width="90" height="99"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7d3-L0-U8r"/>
-        <segue reference="fsf-W6-TMS"/>
+        <segue reference="R85-KO-bYs"/>
+        <segue reference="ptw-Yi-3Ve"/>
     </inferredMetricsTieBreakers>
 </document>
