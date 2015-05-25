@@ -10,10 +10,15 @@ import SpriteKit
 
 class Bookworm:GameScene {
     
+    var shuffleButton:SKSpriteNode!
+    
     //array que guarda as tiles das letras selecionadas no momento
     var letrasSelecionadas:NSMutableArray!
     
     var letrasVizinhas:NSMutableArray!
+    
+    //mantem em memoria o proximo tabuleiro, para nao ter que gerar na hora que clicar no botao
+    var proximoTabuleiro:Tabuleiro!
     
     override func prep(){
         self.setupScene(8)
@@ -26,6 +31,21 @@ class Bookworm:GameScene {
 //        self.setupScene(8)
 //        
 //        self.setupLex()
+        
+        self.proximoTabuleiro = Tabuleiro(x: self.cols, y: self.rows, tamanho: self.tam)
+        self.proximoTabuleiro.position = CGPointMake(10000, self.size.height * 0.18)
+        self.addChild(proximoTabuleiro)
+        
+        self.preparaProximo()
+        
+        shuffleButton = SKSpriteNode(imageNamed: "apple")
+        shuffleButton.name = "shuffle"
+        shuffleButton.size = CGSizeMake(80, 80)
+        shuffleButton.physicsBody = SKPhysicsBody(rectangleOfSize: reButton.size)
+        shuffleButton.physicsBody?.dynamic = false
+        shuffleButton.position = CGPointMake(self.size.width - 50, 50)
+        
+        self.addChild(shuffleButton)
         
         letrasVizinhas = NSMutableArray()
         letrasSelecionadas = NSMutableArray()
@@ -70,6 +90,9 @@ class Bookworm:GameScene {
                     
                     if body.node!.name == "refresh" {
                         self.apagar()
+                    }
+                    if body.node!.name == "shuffle" {
+                        self.trocaLetras()
                     }
                 }
             }
@@ -164,42 +187,74 @@ class Bookworm:GameScene {
         return palavrasSeedadas
     }
     
+    override func trocaLetras() {
+        for i in 0...self.tabuleiro.grid.columns-1 {
+            for j in 0...self.tabuleiro.grid.rows-1 {
+                let letraAux = LetraNode(texture: SKTexture(imageNamed: "square"), letra: proximoTabuleiro.tileForPos(i, y: j)?.content!.letra as String!, tam: self.tam)
+                tabuleiro.updateLetraNode(i, y: j, letra: letraAux)
+            }
+        }
+        self.preparaProximo()
+    }
+    
+    func preparaProximo(){
+        
+        for i in 0...self.tabuleiro.grid.columns-1 {
+            for j in 0...self.tabuleiro.grid.rows-1 {
+                if var tile = proximoTabuleiro.tileForPos(i, y: j) {
+                    tile.content?.removeFromParent()
+                    tile.letraPrev = ""
+                }
+            }
+        }
+        self.encheProx(self.seedar(8))
+    }
+    
     
     //recebe um array com as palavras que devem ser inseridas na grid; as suas letras consecutivas devem estar em tiles vizinhas
     override func encheLetras(seed:NSMutableArray) {
-        //tenta inserir cada palavra
-        //var matriz = Matriz<String>(columns: cols, rows: rows)
-//        for palavra in seed {
-//            self.colocaPalavra(palavra as! String)
-//            break;
-//        }
-        self.colocaPalavra(seed)
+
+        self.colocaPalavra(seed, noTabuleiro:self.tabuleiro)
         for i in 0...self.tabuleiro.grid.columns-1 {
             for j in 0...self.tabuleiro.grid.rows-1 {
                 if (tabuleiro.tileForPos(i, y: j)?.letraPrev == ""){
                     
-                let letraAux = LetraNode(texture: SKTexture(imageNamed: "square"), letra: self.randomLetra(), tam: self.tam)
-                tabuleiro.addLetraNode(i, y: j, letra: letraAux)
+                    let letraAux = LetraNode(texture: SKTexture(imageNamed: "square"), letra: self.randomLetra(), tam: self.tam)
+                    tabuleiro.addLetraNode(i, y: j, letra: letraAux)
                     
                 }
             }
         }
     }
     
-    func colocaPalavra(palavras:NSMutableArray){
+    func encheProx(seed:NSMutableArray) {
+        self.colocaPalavra(seed, noTabuleiro: self.proximoTabuleiro)
+        for i in 0...self.proximoTabuleiro.grid.columns-1 {
+            for j in 0...self.proximoTabuleiro.grid.rows-1 {
+                if (proximoTabuleiro.tileForPos(i, y: j)?.letraPrev == ""){
+                    
+                    let letraAux = LetraNode(texture: SKTexture(imageNamed: "square"), letra: self.randomLetra(), tam: self.tam)
+                    proximoTabuleiro.addLetraNode(i, y: j, letra: letraAux)
+                    
+                }
+            }
+        }
+    }
+    
+    func colocaPalavra(palavras:NSMutableArray, noTabuleiro:Tabuleiro){
         for indicePalavra in 0...palavras.count-1{
             var flagPalavra = false
             var tries = 80
             //posicao da primeira letra da palavra
             do{
                 
-                let rC = arc4random_uniform(UInt32(self.tabuleiro.grid.columns-1))
-                let rR = arc4random_uniform(UInt32(self.tabuleiro.grid.rows-1))
+                let rC = arc4random_uniform(UInt32(noTabuleiro.grid.columns-1))
+                let rR = arc4random_uniform(UInt32(noTabuleiro.grid.rows-1))
                 
-                let startTile = self.tabuleiro.tileForPos(Int(rC) , y: Int(rR))!
+                let startTile = noTabuleiro.tileForPos(Int(rC) , y: Int(rR))!
                 
                 if startTile.letraPrev == "" {
-                    flagPalavra =  self.colocaX(palavras.objectAtIndex(indicePalavra) as! String, letra: 0, neighbors: self.tabuleiro.getOrthoNeighborTiles(startTile))
+                    flagPalavra =  self.colocaX(palavras.objectAtIndex(indicePalavra) as! String, letra: 0, neighbors: noTabuleiro.getOrthoNeighborTiles(startTile), noTabuleiro: noTabuleiro)
             
                 }
                 
@@ -215,30 +270,7 @@ class Bookworm:GameScene {
         
     }
     
-//    func colocaPalavra(palavra:String){
-//        let letras = Array(palavra)
-//        
-//        //posicao da primeira letra da palavra
-//        let rC = arc4random_uniform(UInt32(self.tabuleiro.grid.columns-1))
-//        let rR = arc4random_uniform(UInt32(self.tabuleiro.grid.rows-1))
-//        
-//        let startTile = self.tabuleiro.tileForPos(Int(rC) , y: Int(rR))!
-//        
-//        if startTile.letraPrev == "" {
-//            for letra in letras {
-//                let continua = self.colocaLetra(letra as! String, neighbors: NSMutableArray(array: self.tabuleiro.getOrthoNeighborTiles(startTile)))
-//                if(!continua){
-//                    
-//                }
-//            }
-//        } else {
-//            colocaPalavra(palavra);
-//        }
-//        
-//        
-//    }
-    
-    func colocaX(palavra: String, letra: Int, neighbors:Array<Tile>) -> Bool {
+    func colocaX(palavra: String, letra: Int, neighbors:Array<Tile>, noTabuleiro:Tabuleiro) -> Bool {
         var palavraArr = Array(palavra);
         
         if(letra >= palavraArr.count){
@@ -253,9 +285,9 @@ class Bookworm:GameScene {
             println(tile.y);
             if(tile.letraPrev == ""){ //Verifica se está ocupada
                 tile.letraPrev = String(palavraArr[letra])// as! String;//Seta a tile como ocupada
-                if(colocaX(palavra, letra: letra + 1, neighbors: self.tabuleiro.getOrthoNeighborTiles(tile))){//Continua a recursão
+                if(colocaX(palavra, letra: letra + 1, neighbors: noTabuleiro.getOrthoNeighborTiles(tile), noTabuleiro:noTabuleiro)){//Continua a recursão
                     let letraAux = LetraNode(texture: SKTexture(imageNamed: "square"), letra: String(palavraArr[letra]).uppercaseString, tam: self.tam)
-                    self.tabuleiro.addLetraNode(tile.x, y: tile.y, letra: letraAux)
+                    noTabuleiro.addLetraNode(tile.x, y: tile.y, letra: letraAux)
                     println(palavraArr[letra]);
                     return true;//Se toda ele conseguiu inserir o resto das palavras, retorna true;
                 } else {
@@ -271,43 +303,6 @@ class Bookworm:GameScene {
 
     }
     
-    func colocaLetra(letra:String, neighbors:NSMutableArray) -> Bool{
-        //randomizar neighbors
-        let tile = neighbors.firstObject as! Tile
-        if neighbors.count == 0 {
-            return false
-        }
-        if tile.letraPrev == "" {
-            tile.letraPrev = letra
-            return true
-        }
-        else{
-            neighbors.removeObjectAtIndex(0)
-            return colocaLetra(letra, neighbors: neighbors)
-        }
-        //return true
-    }
-    
-    
-    //override func update(currentTime: CFTimeInterval) {
-        
-        
-        
-        //Controle do timer
-//        if((currentTime - lastUpdate) > 0.5){
-//            if(timeLeft > 0){
-//                lastUpdate = currentTime;
-//                timeLeft -= 0.5;
-//                timeLabel.text = "\(Int(timeLeft))";
-//            } else {
-//                self.gameOver();
-//            }
-//        }
-        
-    //}
-    
-    
-
     
 }
 

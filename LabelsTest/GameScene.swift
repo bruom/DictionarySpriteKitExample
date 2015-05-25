@@ -189,7 +189,6 @@ class GameScene: SKScene {
         player.physicsBody?.contactTestBitMask = enemyCategory
         telaNode.addChild(player)
         
-        player.xScale = -1.0
         let animLegal = SKAction.animateWithTextures([
             SKTexture(imageNamed: "lex1"),
             SKTexture(imageNamed: "lex1b"),
@@ -400,10 +399,11 @@ class GameScene: SKScene {
                 SKTexture(imageNamed: "lex1"),
                 SKTexture(imageNamed: "lex2"),
                 SKTexture(imageNamed: "lex3")
-                ], timePerFrame: 0.8)
+                ], timePerFrame: 0.2)
             
             let animAction = SKAction.repeatActionForever(animLegal)
             
+            player.removeActionForKey("idle")
             player.runAction(animAction, withKey: "escapar")
             player.runAction(SKAction.moveTo(CGPointMake(player.position.x - 1000, player.position.y), duration: 15.0))
             self.runAction(SKAction.playSoundFileNamed("putaVida.mp3", waitForCompletion: false));
